@@ -27,11 +27,12 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/asset/image"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/app/common/style/style.scss",
+              "src/app/common/style/common.scss",
+              "src/app/common/style/forms.scss"
             ],
             "scripts": []
           },
@@ -70,6 +71,10 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ui:build",
+            "proxyConfig": "proxy.config.json"
+          },
           "configurations": {
             "production": {
               "browserTarget": "ui:build:production"
