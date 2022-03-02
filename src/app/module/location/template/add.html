@@ -1,0 +1,44 @@
+<article class="content">
+
+    <header class="title-bar">
+        <button class="btn btn-dark btn-block" type="button" (click)="getCurrentLocation()">
+            <i class="bi-geo-alt"></i>
+            Use Current Location
+        </button>
+    </header>
+
+    <form>
+        <fieldset>
+            <ul>
+                <li>
+                    <div class="form-field">
+                        <input class="form-control" name="name" placeholder="Name" [(ngModel)]="location.name"/>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-field">
+                        <input class="form-control" name="latitude" placeholder="Latitude" [(ngModel)]="location.latitude" (ngModelChange)="onChange()"/>
+                    </div>
+                </li>
+                <li>
+                    <div class="form-field">
+                        <input class="form-control" name="longitude" placeholder="Longitude" [(ngModel)]="location.longitude" (ngModelChange)="onChange()" />
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+
+        <fieldset>
+            <ul>
+                <li>
+                    <div class="form-buttons">
+                        <a class="btn btn-primary" role="button" (click)="onSubmit()">Submit</a>
+                        <a routerLink="/" class="btn btn-dark">
+                            Cancel
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+    </form>
+</article>
