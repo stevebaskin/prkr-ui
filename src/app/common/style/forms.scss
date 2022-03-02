@@ -1,0 +1,27 @@
+form {
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            padding: 1rem;
+
+            .form-label {
+            }
+
+            .form-field {
+            }
+
+            .form-buttons {
+                display: grid;
+                grid-gap: 0.25rem;
+                grid-auto-flow: column;
+                justify-self: right;
+                grid-column: 2 / 3;
+            }
+
+        }
+    }
+}

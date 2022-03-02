@@ -1,0 +1,28 @@
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "src/app/common/style/common";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+app-root {
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 1fr 3fr;
+    background: $yale-blue;
+    color: white;
+
+    article {
+        &.content {
+            padding: 1rem;
+        }
+    }
+
+}
