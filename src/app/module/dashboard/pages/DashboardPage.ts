@@ -16,7 +16,7 @@ export class DashboardPage {
     }
 
     ngOnInit() {
-        this.locationService.getEventEmitter().emit(null);
+        this.locationService.getFormEventEmitter().emit(null);
     }
 
 }

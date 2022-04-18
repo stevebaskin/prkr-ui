@@ -5,7 +5,7 @@ import { Observable }   from 'rxjs';
 import * as URI         from 'urijs';
 import { EventEmitter } from '@angular/core';
 
-export abstract class   BaseService<Resource extends Model & Identifiable> {
+export abstract class BaseService<Resource extends Model & Identifiable> {
 
     protected abstract baseUri: string;
 

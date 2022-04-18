@@ -37,7 +37,7 @@ export class AppMapComponent implements OnInit {
     }
 
     private initSubscription(): void {
-        this.locationService.getEventEmitter().subscribe(event => {
+        this.locationService.getFormEventEmitter().subscribe(event => {
             this.bounds = new google.maps.LatLngBounds();
             this.markers = [];
 

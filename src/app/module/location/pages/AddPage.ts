@@ -30,7 +30,7 @@ export class AddPage implements OnInit {
         this.location.latitude = 0;
         this.location.longitude = 0;
 
-        this.locationService.getEventEmitter().emit(this.location);
+        this.locationService.getFormEventEmitter().emit(this.location);
     }
 
     getCurrentLocation() {
@@ -38,7 +38,7 @@ export class AddPage implements OnInit {
             this.location.latitude = position.coords.latitude;
             this.location.longitude = position.coords.longitude;
 
-            this.locationService.getEventEmitter().emit(this.location);
+            this.locationService.getFormEventEmitter().emit(this.location);
         });
     }
 
