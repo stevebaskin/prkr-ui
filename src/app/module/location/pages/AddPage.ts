@@ -27,8 +27,9 @@ export class AddPage implements OnInit {
     }
 
     initLocation() {
-        this.location.latitude = 0;
-        this.location.longitude = 0;
+        // Sydney
+        this.location.latitude = -33.88270036534784;
+        this.location.longitude = 151.20659726260985;
 
         this.locationService.getFormEventEmitter().emit(this.location);
     }
