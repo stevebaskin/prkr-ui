@@ -2,3 +2,19 @@ header {
     display: grid;
     justify-items: center;
 }
+
+.form-field {
+    &.sizes {
+        input {
+            display: none;
+        }
+        label {
+            width: 100%;
+        }
+    }
+
+    &.locations {
+        display: grid;
+        grid-gap: 0.5rem;
+    }
+}

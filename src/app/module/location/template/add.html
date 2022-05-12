@@ -1,28 +1,39 @@
 <article class="content">
 
-    <header class="title-bar">
-        <button class="btn btn-dark btn-block" type="button" (click)="getCurrentLocation()">
-            <i class="bi-geo-alt"></i>
-            Use Current Location
-        </button>
-    </header>
-
     <form>
         <fieldset>
             <ul>
                 <li>
                     <div class="form-field">
-                        <input class="form-control" name="name" placeholder="Name" [(ngModel)]="location.name"/>
+                        <input class="form-control" name="name" placeholder="Name" [(ngModel)]="location.name" />
                     </div>
                 </li>
                 <li>
-                    <div class="form-field">
-                        <input class="form-control" name="latitude" placeholder="Latitude" [(ngModel)]="location.latitude" (ngModelChange)="onChange()"/>
+                    <div class="form-label">
+                        <label>Space for</label>
+                    </div>
+                    <div class="form-field sizes">
+                        <div data-toggle="buttons">
+                            <div *ngFor="let option of sizeOptions">
+                                <label class="btn btn-outline-secondary" for="size-{{option.value}}"
+                                       [ngClass]="{active: option.value == location.size}">{{option.name}}
+                                    <input type="radio" name="size" id="size-{{option.value}}" value="{{option.value}}" [(ngModel)]="location.size">
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </li>
                 <li>
-                    <div class="form-field">
-                        <input class="form-control" name="longitude" placeholder="Longitude" [(ngModel)]="location.longitude" (ngModelChange)="onChange()" />
+                    <div class="form-label">
+                        <label>Location</label>
+                    </div>
+                    <div class="form-field locations">
+                        <button class="btn btn-dark btn-block" type="button" (click)="getCurrentLocation()">
+                            <i class="bi-geo-alt"></i>
+                            Use Current Location
+                        </button>
+                        <input class="form-control" name="latitude" placeholder="Latitude" [ngModel]="location.latitude" disabled />
+                        <input class="form-control" name="longitude" placeholder="Longitude" [ngModel]="location.longitude" disabled />
                     </div>
                 </li>
             </ul>
