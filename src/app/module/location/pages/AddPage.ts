@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Location }          from '../domain/Location';
-import { LocationService }   from '../service/LocationService';
-import { Router }            from '@angular/router';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Location }                             from '../domain/Location';
+import { LocationService }                      from '../service/LocationService';
+import { Router }                               from '@angular/router';
 
 
 @Component({
@@ -17,6 +17,7 @@ export class AddPage implements OnInit {
     sizeOptions = [{value: 1, name: '1 - 5'}, {value: 6, name: '6 - 10'}, {value: 11, name: '11 - 20'}, {value: 20, name: '20 +'}];
 
     constructor(
+        private cdRef: ChangeDetectorRef,
         private router: Router,
         private locationService: LocationService,
     ) {
@@ -25,6 +26,7 @@ export class AddPage implements OnInit {
     ngOnInit() {
         this.initLocation();
         this.getCurrentLocation();
+        this.initSubscription();
     }
 
     initLocation() {
@@ -44,8 +46,13 @@ export class AddPage implements OnInit {
         });
     }
 
-    onChange() {
-        this.locationService.getEventEmitter().emit(this.location);
+    private initSubscription(): void {
+        this.locationService.getMapEventEmitter().subscribe(event => {
+            this.location.latitude = event.latitude;
+            this.location.longitude = event.longitude;
+
+            this.cdRef.detectChanges();
+        });
     }
 
     onSubmit() {

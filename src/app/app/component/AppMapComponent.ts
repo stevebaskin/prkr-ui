@@ -1,8 +1,8 @@
-import { Component, OnInit, ViewChild }        from '@angular/core';
-import { LocationService }                     from '../../module/location/service/LocationService';
-import { GoogleMap, MapInfoWindow, MapMarker } from '@angular/google-maps';
-import { Router }                              from '@angular/router';
-import { Location }                            from '../../module/location/domain/Location';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { LocationService }                                 from '../../module/location/service/LocationService';
+import { GoogleMap, MapInfoWindow, MapMarker }             from '@angular/google-maps';
+import { Router }                                          from '@angular/router';
+import { Location }                                        from '../../module/location/domain/Location';
 
 
 @Component({
@@ -24,15 +24,29 @@ export class AppMapComponent implements OnInit {
     icon = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
 
     constructor(
+        private cdRef: ChangeDetectorRef,
         private router: Router,
         private locationService: LocationService) {
     }
 
     ngOnInit() {
         this.initSubscription();
+    }
 
-        navigator.geolocation.getCurrentPosition((position) => {
-            this.currentLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+    ngAfterViewInit() {
+        this.map.googleMap.addListener('click', (event) => {
+            if (this.markers.length <= 1) {
+                this.bounds = new google.maps.LatLngBounds();
+                this.markers = [];
+
+                const location: Location = new Location();
+                location.latitude = event.latLng.lat();
+                location.longitude = event.latLng.lng();
+                this.createMarker(location);
+
+                this.locationService.getMapEventEmitter().emit(location);
+                this.cdRef.detectChanges();
+            }
         });
     }
 
