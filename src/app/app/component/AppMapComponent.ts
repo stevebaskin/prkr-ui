@@ -60,8 +60,8 @@ export class AppMapComponent implements OnInit {
                 this.map.fitBounds(this.bounds);
 
                 const listener = this.map.googleMap.addListener('bounds_changed', function (event) {
-                    if (this.getZoom() > 5) {
-                        this.setZoom(5);
+                    if (this.getZoom() > 14) {
+                        this.setZoom(14);
                     }
                 });
 
