@@ -13,13 +13,11 @@
                         <label>Space for</label>
                     </div>
                     <div class="form-field sizes">
-                        <div data-toggle="buttons">
-                            <div *ngFor="let option of sizeOptions">
-                                <label class="btn btn-outline-secondary" for="size-{{option.value}}"
-                                       [ngClass]="{active: option.value == location.size}">{{option.name}}
-                                    <input type="radio" name="size" id="size-{{option.value}}" value="{{option.value}}" [(ngModel)]="location.size">
-                                </label>
-                            </div>
+                        <div *ngFor="let option of sizeOptions">
+                            <label class="btn btn-outline-secondary" for="size-{{option.value}}"
+                                   [ngClass]="{active: option.value == location.size}">{{option.name}}
+                                <input type="radio" name="size" id="size-{{option.value}}" value="{{option.value}}" [(ngModel)]="location.size">
+                            </label>
                         </div>
                     </div>
                 </li>

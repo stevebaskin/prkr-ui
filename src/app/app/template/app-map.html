@@ -8,18 +8,17 @@
         *ngFor="let marker of markers"
         [position]="marker.position"
         (mapClick)="onClick(markerElem, marker.info)"
-        [draggable]="true"
     >
 
     </map-marker>
 
     <map-info-window>
-        {{infoContent}}
+        <b>{{infoContent}}</b>
     </map-info-window>
 
-    <map-marker
-        [position]="currentLocation"
-        [icon]="icon">
-    </map-marker>
+<!--    <map-marker-->
+<!--        [position]="currentLocation"-->
+<!--        [icon]="icon">-->
+<!--    </map-marker>-->
 
 </google-map>
