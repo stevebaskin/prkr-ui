@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "http://localhost:8080/",
+        "target": "http://park-env.eba-yu3gbhxu.us-west-1.elasticbeanstalk.com",
         "secure": false,
         "logLevel": "debug",
         "changeOrigin": true
