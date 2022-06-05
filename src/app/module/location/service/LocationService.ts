@@ -6,7 +6,7 @@ import { Location }    from '../domain/Location';
 @Injectable()
 export class LocationService extends BaseService<Location> {
 
-    protected baseUri = '/api/locations';
+    protected baseUri = 'http://park-env.eba-yu3gbhxu.us-west-1.elasticbeanstalk.com/api/locations';
 
     protected mapEventEmitter: EventEmitter<Location> = new EventEmitter();
 
