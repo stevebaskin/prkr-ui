@@ -11,6 +11,7 @@ import { AppInfoComponent }         from './component/AppInfoComponent';
 import { AppMapComponent }          from './component/AppMapComponent';
 import { GoogleMapsModule }         from '@angular/google-maps';
 import { LocationService }          from '../module/location/service/LocationService';
+import { MarkerService }            from '../module/location/service/MarkerService';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,7 @@ import { LocationService }          from '../module/location/service/LocationSer
         GoogleMapsModule,
         LocationModule
     ],
-    providers: [LocationService],
+    providers: [LocationService, MarkerService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

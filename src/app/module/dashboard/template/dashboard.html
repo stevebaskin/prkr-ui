@@ -7,8 +7,9 @@
         </button>
     </header>
 
-    <div>
-        <h3></h3>
+    <div class="marker-info" *ngIf="marker">
+        <h3>{{marker.name}}</h3>
+        <h4>{{marker.position.toString()}}</h4>
     </div>
 
 </article>

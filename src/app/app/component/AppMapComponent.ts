@@ -3,6 +3,8 @@ import { LocationService }                                 from '../../module/lo
 import { GoogleMap, MapInfoWindow, MapMarker }             from '@angular/google-maps';
 import { Router }                                          from '@angular/router';
 import { Location }                                        from '../../module/location/domain/Location';
+import { MarkerService }                                   from '../../module/location/service/MarkerService';
+import { Marker }                                          from '../../module/location/domain/Marker';
 
 
 @Component({
@@ -14,19 +16,17 @@ export class AppMapComponent implements OnInit {
     static readonly selector: string = 'app-map';
 
     @ViewChild(GoogleMap, {static: false}) map: GoogleMap;
-    @ViewChild(MapInfoWindow, {static: false}) infoWindow: MapInfoWindow;
 
     zoom = 12;
     bounds: google.maps.LatLngBounds;
     markers = [];
-    infoContent = '';
-    currentLocation: google.maps.LatLng;
-    icon = 'http://www.robotwoods.com/dev/misc/bluecircle.png';
 
     constructor(
         private cdRef: ChangeDetectorRef,
         private router: Router,
-        private locationService: LocationService) {
+        private locationService: LocationService,
+        private markerService: MarkerService
+    ) {
     }
 
     ngOnInit() {
@@ -90,18 +90,15 @@ export class AppMapComponent implements OnInit {
         const latLng = new google.maps.LatLng(location.latitude, location.longitude);
 
         this.markers.push({
+            ...location,
             position: latLng,
-            info: location.name,
         });
 
         this.bounds.extend(latLng);
     }
 
-    onClick(marker: MapMarker, content) {
-        if (content) {
-            this.infoContent = content;
-            this.infoWindow.open(marker);
-        }
+    onClick(marker: Marker) {
+        this.markerService.getMapEventEmitter().emit(marker);
     }
 
 }
