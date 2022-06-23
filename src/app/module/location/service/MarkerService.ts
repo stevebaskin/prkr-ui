@@ -1,11 +1,8 @@
 import { EventEmitter, Injectable } from '@angular/core';
-import { BaseService }              from '../../../common/service/BaseService';
 import { Marker }                   from '../domain/Marker';
 
 @Injectable()
-export class MarkerService extends BaseService<Marker> {
-
-    protected baseUri;
+export class MarkerService {
 
     protected mapEventEmitter: EventEmitter<Marker> = new EventEmitter();
 

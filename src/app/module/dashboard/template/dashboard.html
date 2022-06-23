@@ -10,6 +10,9 @@
     <div class="marker-info" *ngIf="marker">
         <h3>{{marker.name}}</h3>
         <h4>{{marker.position.toString()}}</h4>
+        <h5>Parking for: {{getSizeOptionByValue(marker.size)}}</h5>
+        <a href="{{buildDirectionsLink(marker)}}" class="btn btn-primary" role="button" target="_blank">Get Directions</a>
     </div>
+
 
 </article>
