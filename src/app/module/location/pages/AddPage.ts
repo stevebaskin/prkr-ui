@@ -56,6 +56,11 @@ export class AddPage implements OnInit {
     }
 
     onSubmit() {
+        if (!this.location.restrictedHours) {
+            this.location.startTime = null;
+            this.location.endTime = null;
+        }
+
         this.locationService.save(this.location).subscribe(() => {
             this.router.navigate(['/']);
         });

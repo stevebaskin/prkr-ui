@@ -12,12 +12,25 @@ export class Location implements Model, Identifiable, Nameable {
     name: string = null;
 
     @JsonProperty()
-    size: number = null;
-
-    @JsonProperty()
     latitude: number = null;
 
     @JsonProperty()
     longitude: number = null;
+
+    @JsonProperty()
+    size: number = null;
+
+    allDay: boolean = true;
+
+    @JsonProperty()
+    hourLimit: number = null;
+
+    restrictedHours: boolean = false;
+
+    @JsonProperty()
+    startTime: Date = null;
+
+    @JsonProperty()
+    endTime: Date = null;
 
 }

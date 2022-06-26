@@ -34,6 +34,56 @@
                         <input class="form-control" name="longitude" placeholder="Longitude" [ngModel]="location.longitude" disabled />
                     </div>
                 </li>
+
+                <li>
+                    <div class="form-label">
+                        <label>All day parking</label>
+                    </div>
+                    <div class="form-field locations">
+                        <div class="btn-group">
+                            <input type="radio" class="btn-check" name="all-day" id="all-day-yes" [(ngModel)]="location.allDay" [value]="true" checked />
+                            <label class="btn btn-secondary" for="all-day-yes">Yes</label>
+                            <input type="radio" class="btn-check" name="all-day" id="all-day-no" [(ngModel)]="location.allDay" [value]="false" />
+                            <label class="btn btn-secondary" for="all-day-no">No</label>
+                        </div>
+                    </div>
+                </li>
+
+                <li *ngIf="!location.allDay">
+                    <div class="form-label">
+                        <label>Time limit</label>
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="number" name="name" placeholder="Limit in Hours" [(ngModel)]="location.hourLimit" />
+                    </div>
+                </li>
+
+                <li>
+                    <div class="form-label">
+                        <label>Restricted Hours</label>
+                    </div>
+                    <div class="form-field locations">
+                        <div class="btn-group">
+                            <input type="radio" class="btn-check" name="restricted-hours" id="restricted-hours-yes" [(ngModel)]="location.restrictedHours" [value]="true"  />
+                            <label class="btn btn-secondary" for="restricted-hours-yes">Yes</label>
+                            <input type="radio" class="btn-check" name="restricted-hours" id="restricted-hours-no" [(ngModel)]="location.restrictedHours" [value]="false" checked />
+                            <label class="btn btn-secondary" for="restricted-hours-no">No</label>
+                        </div>
+                    </div>
+                </li>
+
+                <li *ngIf="location.restrictedHours">
+                    <div class="form-label">
+                        <label>Available Times</label>
+                    </div>
+                    <div class="form-field locations">
+                        <div class="btn-group">
+                            <input class="form-control" name="start-time" placeholder="Start Time" type="time" [ngModel]="location.startTime | date:'hh:mm'" (ngModelChange)="location.startTime = $event" />
+                            <input class="form-control" name="end-time" placeholder="End Time" type="time" [ngModel]="location.endTime | date:'hh:mm'" (ngModelChange)="location.endTime = $event" />
+                        </div>
+                    </div>
+                </li>
+
             </ul>
         </fieldset>
 
