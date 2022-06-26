@@ -7,12 +7,28 @@
         </button>
     </header>
 
-    <div class="marker-info" *ngIf="marker">
+    <div class="marker" *ngIf="marker">
         <h3>{{marker.name}}</h3>
         <h4>{{marker.position.toString()}}</h4>
-        <h5>Parking for: {{getSizeOptionByValue(marker.size)}}</h5>
+
+        <div class="street-sign">
+            <div class="hour-limit">{{marker.hourLimit}}P</div>
+            <div class="title">Motor Cycles Only</div>
+            <div class="size">Spaces: {{getSizeOptionByValue(marker.size)}}</div>
+            <div class="times" *ngIf="marker.startTime && marker.endTime">
+                <div class="start-time">
+                    {{marker.startTime | date: getTimeStringFormat(marker.startTime)}}
+                </div>
+                <span>-</span>
+                <div class="end-time">
+                    {{marker.endTime | date: getTimeStringFormat(marker.endTime)}}
+                </div>
+            </div>
+            <div class="arrow">⟷</div>
+        </div>
+
+
         <a href="{{buildDirectionsLink(marker)}}" class="btn btn-primary" role="button" target="_blank">Get Directions</a>
     </div>
-
 
 </article>

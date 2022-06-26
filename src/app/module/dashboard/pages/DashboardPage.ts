@@ -40,4 +40,11 @@ export class DashboardPage {
         return `https://www.google.com/maps/dir/?api=1&destination=${ marker.position.lat() }%2C${ marker.position.lng() }`;
     }
 
+    getTimeStringFormat(date: Date): string {
+        if (!date.getMinutes()) {
+            return 'ha';
+        }
+        return 'hmma';
+    }
+
 }

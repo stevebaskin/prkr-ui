@@ -88,10 +88,14 @@ export class AppMapComponent implements OnInit {
 
     createMarker(location: Location) {
         const latLng = new google.maps.LatLng(location.latitude, location.longitude);
+        const startTime = location.startTime ? new Date("1990-01-01T"+ location.startTime) : null;
+        const endTime = location.endTime ? new Date("1990-01-01T"+ location.endTime) : null;
 
         this.markers.push({
             ...location,
             position: latLng,
+            startTime,
+            endTime
         });
 
         this.bounds.extend(latLng);
