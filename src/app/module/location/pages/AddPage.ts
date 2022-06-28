@@ -73,7 +73,6 @@ export class AddPage implements OnInit {
             this.location.endTime = null;
         }
         this.location.name = this.address;
-        console.log(this.location);
         this.locationService.save(this.location).subscribe(() => {
             this.router.navigate(['/']);
         });
