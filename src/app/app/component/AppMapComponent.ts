@@ -103,6 +103,11 @@ export class AppMapComponent implements OnInit {
 
     onClick(marker: Marker) {
         this.markerService.getMapEventEmitter().emit(marker);
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
     }
 
 }
