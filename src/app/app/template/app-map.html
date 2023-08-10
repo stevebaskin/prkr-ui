@@ -11,4 +11,12 @@
 
     </map-marker>
 
+    <map-marker
+        *ngIf="currentLocationMarker"
+        [position]="currentLocationMarker.position"
+        [icon]="currentLocationIcon"
+        (mapClick)="onClick(currentLocationMarker)"
+    >
+    </map-marker>
+
 </google-map>

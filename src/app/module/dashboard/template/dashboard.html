@@ -9,7 +9,7 @@
 
     <div class="marker" *ngIf="marker">
         <h3>{{marker.name}}</h3>
-        <div class="street-sign">
+        <div *ngIf="marker.size" class="street-sign">
             <div class="hour-limit">{{marker.hourLimit}}P</div>
             <div class="title">Motor Cycles Only</div>
             <div class="size">Spaces: {{getSizeOptionByValue(marker.size)}}</div>
@@ -26,7 +26,7 @@
         </div>
 
 
-        <a href="{{buildDirectionsLink(marker)}}" class="btn btn-primary" role="button" target="_blank">Get Directions</a>
+        <a *ngIf="marker.size" href="{{buildDirectionsLink(marker)}}" class="btn btn-primary" role="button" target="_blank">Get Directions</a>
     </div>
 
 </article>

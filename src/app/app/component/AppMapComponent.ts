@@ -20,6 +20,8 @@ export class AppMapComponent implements OnInit {
     zoom = 12;
     bounds: google.maps.LatLngBounds;
     markers = [];
+    currentLocationMarker;
+    currentLocationIcon = '/asset/icon/motorbike.png';
 
     constructor(
         private cdRef: ChangeDetectorRef,
@@ -31,6 +33,7 @@ export class AppMapComponent implements OnInit {
 
     ngOnInit() {
         this.initSubscription();
+        this.setCurrentLocation();
     }
 
     ngAfterViewInit() {
@@ -110,4 +113,12 @@ export class AppMapComponent implements OnInit {
         });
     }
 
+    setCurrentLocation() {
+        navigator.geolocation.getCurrentPosition(async (position) => {
+            this.currentLocationMarker = {
+                name: 'This is you!',
+                position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
+            };
+        });
+    }
 }
