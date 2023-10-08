@@ -21,8 +21,8 @@
                     </div>
                     <div class="form-field sizes">
                         <div *ngFor="let option of sizeOptions">
-                            <label class="btn btn-outline-secondary" for="size-{{option.value}}"
-                                   [ngClass]="{active: option.value == location.size}">{{option.name}}
+                            <label class="btn" for="size-{{option.value}}"
+                                   [ngClass]="option.value == location.size ? 'btn-success' : 'btn-outline-secondary'">{{option.name}}
                                 <input type="radio" name="size" id="size-{{option.value}}" value="{{option.value}}" [(ngModel)]="location.size">
                             </label>
                         </div>
@@ -36,9 +36,9 @@
                     <div class="form-field locations">
                         <div class="btn-group">
                             <input type="radio" class="btn-check" name="all-day" id="all-day-yes" [(ngModel)]="location.allDay" [value]="true" checked />
-                            <label class="btn btn-secondary" for="all-day-yes">Yes</label>
+                            <label [ngClass]="location.allDay ? 'btn-success' : 'btn-secondary'" class="btn" for="all-day-yes">Yes</label>
                             <input type="radio" class="btn-check" name="all-day" id="all-day-no" [(ngModel)]="location.allDay" [value]="false" />
-                            <label class="btn btn-secondary" for="all-day-no">No</label>
+                            <label [ngClass]="!location.allDay ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="all-day-no">No</label>
                         </div>
                     </div>
                 </li>
@@ -60,10 +60,10 @@
                         <div class="btn-group">
                             <input type="radio" class="btn-check" name="restricted-hours" id="restricted-hours-yes" [(ngModel)]="location.restrictedHours"
                                    [value]="true" />
-                            <label class="btn btn-secondary" for="restricted-hours-yes">Yes</label>
+                            <label [ngClass]="location.restrictedHours ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="restricted-hours-yes">Yes</label>
                             <input type="radio" class="btn-check" name="restricted-hours" id="restricted-hours-no" [(ngModel)]="location.restrictedHours"
                                    [value]="false" checked />
-                            <label class="btn btn-secondary" for="restricted-hours-no">No</label>
+                            <label [ngClass]="!location.restrictedHours ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="restricted-hours-no">No</label>
                         </div>
                     </div>
                 </li>
