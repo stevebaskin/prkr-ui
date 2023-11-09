@@ -1,19 +1,26 @@
 <article class="content">
 
     <header class="title-bar">
-        <button class="btn btn-dark btn-block" type="button" routerLink="/locations/add">
+        <button class="btn btn-dark btn-block" routerLink="/locations/add" type="button">
             <i class="bi-signpost-split-fill"></i>
             Add a Park
         </button>
     </header>
 
-    <div class="marker" *ngIf="marker">
+    <div class="search">
+        <input (onAddressChange)="onAddressChange($event)" *ngIf="!isLoading" class="form-control form-control-lg places-autocomplete"
+               name="location"
+               ngx-google-places-autocomplete
+               placeholder="Where are we headed?" type="text" />
+    </div>
+
+    <div *ngIf="marker" class="marker">
         <h3>{{marker.name}}</h3>
         <div *ngIf="marker.size" class="street-sign">
             <div class="hour-limit">{{marker.hourLimit}}P</div>
             <div class="title">Motor Cycles Only</div>
             <div class="size">Spaces: {{getSizeOptionByValue(marker.size)}}</div>
-            <div class="times" *ngIf="marker.startTime && marker.endTime">
+            <div *ngIf="marker.startTime && marker.endTime" class="times">
                 <div class="start-time">
                     {{marker.startTime | date: getTimeStringFormat(marker.startTime)}}
                 </div>

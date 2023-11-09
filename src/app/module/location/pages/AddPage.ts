@@ -78,4 +78,8 @@ export class AddPage implements OnInit {
         });
     }
 
+    onCancel() {
+        this.locationService.getSearchEventEmitter().emit(null);
+        this.router.navigate(['/']);
+    }
 }

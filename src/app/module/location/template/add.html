@@ -89,8 +89,8 @@
             <ul>
                 <li>
                     <div class="form-buttons">
-                        <a class="btn btn-primary" role="button" (click)="onSubmit()">Submit</a>
-                        <a routerLink="/" class="btn btn-dark">
+                        <a (click)="onSubmit()" class="btn btn-primary" role="button">Submit</a>
+                        <a (click)="onCancel()" class="btn btn-dark">
                             Cancel
                         </a>
                     </div>

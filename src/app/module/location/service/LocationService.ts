@@ -1,7 +1,7 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { BaseService }              from '../../../common/service/BaseService';
-import { ApiService }  from '../../core/service/ApiService';
-import { Location }    from '../domain/Location';
+import { ApiService }               from '../../core/service/ApiService';
+import { Location }                 from '../domain/Location';
 
 @Injectable()
 export class LocationService extends BaseService<Location> {
@@ -11,7 +11,9 @@ export class LocationService extends BaseService<Location> {
 
     protected mapEventEmitter: EventEmitter<Location> = new EventEmitter();
 
-    protected infoEventEmitter: EventEmitter<Location> = new EventEmitter();
+    protected formEventEmitter: EventEmitter<Location> = new EventEmitter();
+
+    protected searchEventEmitter: EventEmitter<Location> = new EventEmitter();
 
     constructor(apiService: ApiService) {
         super(apiService);
@@ -22,7 +24,11 @@ export class LocationService extends BaseService<Location> {
     }
 
     public getFormEventEmitter(): EventEmitter<Location> {
-        return this.infoEventEmitter;
+        return this.formEventEmitter;
+    }
+
+    public getSearchEventEmitter(): EventEmitter<Location> {
+        return this.searchEventEmitter;
     }
 
 }

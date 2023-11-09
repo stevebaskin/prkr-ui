@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { LocationService }                                 from '../../module/location/service/LocationService';
-import { GoogleMap, MapInfoWindow, MapMarker }             from '@angular/google-maps';
+import { GoogleMap }                                       from '@angular/google-maps';
 import { Router }                                          from '@angular/router';
 import { Location }                                        from '../../module/location/domain/Location';
 import { MarkerService }                                   from '../../module/location/service/MarkerService';
@@ -18,10 +18,12 @@ export class AppMapComponent implements OnInit {
     @ViewChild(GoogleMap, {static: false}) map: GoogleMap;
 
     zoom = 12;
-    bounds: google.maps.LatLngBounds;
+    bounds: google.maps.LatLngBounds = new google.maps.LatLngBounds();
     markers = [];
     currentLocationMarker;
     currentLocationIcon = '/asset/icon/motorbike.png';
+    searchLocationMarker;
+    searchLocationIcon = '/asset/icon/you-are-here.png';
 
     constructor(
         private cdRef: ChangeDetectorRef,
@@ -32,7 +34,7 @@ export class AppMapComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.initSubscription();
+        this.initSubscriptions();
         this.setCurrentLocation();
     }
 
@@ -50,33 +52,6 @@ export class AppMapComponent implements OnInit {
                 this.locationService.getMapEventEmitter().emit(location);
                 this.cdRef.detectChanges();
             }
-        });
-    }
-
-    private initSubscription(): void {
-        this.locationService.getFormEventEmitter().subscribe(event => {
-            this.bounds = new google.maps.LatLngBounds();
-            this.markers = [];
-
-            if (event) {
-                this.createMarker(event);
-                this.map.fitBounds(this.bounds);
-
-                const listener = this.map.googleMap.addListener('bounds_changed', function (event) {
-                    if (this.getZoom() > 14) {
-                        this.setZoom(14);
-                    }
-                });
-
-                setTimeout(function () {
-                    google.maps.event.removeListener(listener);
-                }, 100);
-
-            }
-            else {
-                this.getLocations();
-            }
-
         });
     }
 
@@ -119,6 +94,49 @@ export class AppMapComponent implements OnInit {
                 name: 'This is you!',
                 position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
             };
+        });
+    }
+
+    private initSubscriptions(): void {
+        this.locationService.getFormEventEmitter().subscribe(event => {
+            this.markers = [];
+
+            if (event) {
+                this.createMarker(event);
+                this.map.fitBounds(this.bounds);
+
+                const listener = this.map.googleMap.addListener('bounds_changed', function (event) {
+                    if (this.getZoom() > 14) {
+                        this.setZoom(14);
+                    }
+                });
+
+                setTimeout(function () {
+                    google.maps.event.removeListener(listener);
+                }, 100);
+
+            }
+            else {
+                this.getLocations();
+            }
+
+        });
+
+        this.locationService.getSearchEventEmitter().subscribe(event => {
+            if (event) {
+                const latLng = new google.maps.LatLng(event.latitude, event.longitude);
+
+                this.bounds.extend(latLng);
+                this.map.fitBounds(this.bounds);
+
+                this.searchLocationMarker = {
+                    name: event.name,
+                    position: latLng
+                };
+            }
+            else {
+                this.searchLocationMarker = null;
+            }
         });
     }
 }

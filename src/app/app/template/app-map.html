@@ -15,7 +15,15 @@
     <map-marker
         (mapClick)="onClick(currentLocationMarker)"
         *ngIf="currentLocationMarker"
+        [icon]="searchLocationIcon"
         [position]="currentLocationMarker.position"
+    >
+    </map-marker>
+
+    <map-marker
+        (mapClick)="onClick(searchLocationMarker)"
+        *ngIf="searchLocationMarker"
+        [position]="searchLocationMarker.position"
     >
     </map-marker>
 
