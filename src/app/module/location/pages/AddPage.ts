@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Location }                             from '../domain/Location';
 import { LocationService }                      from '../service/LocationService';
 import { Router }                               from '@angular/router';
-import { Marker }                               from '../domain/Marker';
 
 
 @Component({
@@ -49,16 +48,6 @@ export class AddPage implements OnInit {
         });
     }
 
-    private initSubscription(): void {
-        this.locationService.getMapEventEmitter().subscribe(async event => {
-            this.location.latitude = event.latitude;
-            this.location.longitude = event.longitude;
-            this.address = await this.getAddress(event);
-
-            this.cdRef.detectChanges();
-        });
-    }
-
     async getAddress(location: Location): Promise<string> {
         const position = new google.maps.LatLng(location.latitude, location.longitude);
         const geocoder = new google.maps.Geocoder();
@@ -82,4 +71,15 @@ export class AddPage implements OnInit {
         this.locationService.getSearchEventEmitter().emit(null);
         this.router.navigate(['/']);
     }
+
+    private initSubscription(): void {
+        this.locationService.getMapEventEmitter().subscribe(async event => {
+            this.location.latitude = event.latitude;
+            this.location.longitude = event.longitude;
+            this.address = await this.getAddress(event);
+
+            this.cdRef.detectChanges();
+        });
+    }
+
 }

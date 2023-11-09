@@ -9,7 +9,7 @@
                     </div>
                     <div class="form-field locations">
                         {{address}}
-                        <button class="btn btn-dark btn-block" type="button" (click)="getCurrentLocation()">
+                        <button (click)="getCurrentLocation()" class="btn btn-dark btn-block" type="button">
                             <i class="bi-geo-alt"></i>
                             Use Current Location
                         </button>
@@ -21,9 +21,9 @@
                     </div>
                     <div class="form-field sizes">
                         <div *ngFor="let option of sizeOptions">
-                            <label class="btn" for="size-{{option.value}}"
-                                   [ngClass]="option.value == location.size ? 'btn-success' : 'btn-outline-secondary'">{{option.name}}
-                                <input type="radio" name="size" id="size-{{option.value}}" value="{{option.value}}" [(ngModel)]="location.size">
+                            <label [ngClass]="option.value == location.size ? 'btn-success' : 'btn-outline-secondary'" class="btn"
+                                   for="size-{{option.value}}">{{option.name}}
+                                <input [(ngModel)]="location.size" id="size-{{option.value}}" name="size" type="radio" value="{{option.value}}">
                             </label>
                         </div>
                     </div>
@@ -35,9 +35,9 @@
                     </div>
                     <div class="form-field locations">
                         <div class="btn-group">
-                            <input type="radio" class="btn-check" name="all-day" id="all-day-yes" [(ngModel)]="location.allDay" [value]="true" checked />
+                            <input [(ngModel)]="location.allDay" [value]="true" checked class="btn-check" id="all-day-yes" name="all-day" type="radio" />
                             <label [ngClass]="location.allDay ? 'btn-success' : 'btn-secondary'" class="btn" for="all-day-yes">Yes</label>
-                            <input type="radio" class="btn-check" name="all-day" id="all-day-no" [(ngModel)]="location.allDay" [value]="false" />
+                            <input [(ngModel)]="location.allDay" [value]="false" class="btn-check" id="all-day-no" name="all-day" type="radio" />
                             <label [ngClass]="!location.allDay ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="all-day-no">No</label>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <label>Time limit</label>
                     </div>
                     <div class="form-field">
-                        <input class="form-control" type="number" name="name" placeholder="Hours" [(ngModel)]="location.hourLimit" />
+                        <input [(ngModel)]="location.hourLimit" class="form-control" name="name" placeholder="Hours" type="number" />
                     </div>
                 </li>
 
@@ -58,11 +58,11 @@
                     </div>
                     <div class="form-field locations">
                         <div class="btn-group">
-                            <input type="radio" class="btn-check" name="restricted-hours" id="restricted-hours-yes" [(ngModel)]="location.restrictedHours"
-                                   [value]="true" />
+                            <input [(ngModel)]="location.restrictedHours" [value]="true" class="btn-check" id="restricted-hours-yes" name="restricted-hours"
+                                   type="radio" />
                             <label [ngClass]="location.restrictedHours ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="restricted-hours-yes">Yes</label>
-                            <input type="radio" class="btn-check" name="restricted-hours" id="restricted-hours-no" [(ngModel)]="location.restrictedHours"
-                                   [value]="false" checked />
+                            <input [(ngModel)]="location.restrictedHours" [value]="false" checked class="btn-check" id="restricted-hours-no"
+                                   name="restricted-hours" type="radio" />
                             <label [ngClass]="!location.restrictedHours ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="restricted-hours-no">No</label>
                         </div>
                     </div>
@@ -74,10 +74,10 @@
                     </div>
                     <div class="form-field locations">
                         <div class="btn-group">
-                            <input class="form-control" name="start-time" placeholder="Start Time" type="time" [ngModel]="location.startTime | date:'hh:mm'"
-                                   (ngModelChange)="location.startTime = $event" />
-                            <input class="form-control" name="end-time" placeholder="End Time" type="time" [ngModel]="location.endTime | date:'hh:mm'"
-                                   (ngModelChange)="location.endTime = $event" />
+                            <input (ngModelChange)="location.startTime = $event" [ngModel]="location.startTime | date:'hh:mm'" class="form-control" name="start-time" placeholder="Start Time"
+                                   type="time" />
+                            <input (ngModelChange)="location.endTime = $event" [ngModel]="location.endTime | date:'hh:mm'" class="form-control" name="end-time" placeholder="End Time"
+                                   type="time" />
                         </div>
                     </div>
                 </li>
