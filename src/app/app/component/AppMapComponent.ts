@@ -16,7 +16,7 @@ export class AppMapComponent implements OnInit, AfterViewInit {
 
     @ViewChild(GoogleMap, {static: false}) map: GoogleMap;
 
-    zoom = 12;
+    zoom = 15;
     bounds: google.maps.LatLngBounds = new google.maps.LatLngBounds();
     markers = [];
     currentLocationMarker;
@@ -112,9 +112,13 @@ export class AppMapComponent implements OnInit, AfterViewInit {
         this.locationService.getSearchEventEmitter().subscribe(event => {
             if (event) {
                 const latLng = new google.maps.LatLng(event.latitude, event.longitude);
-
+                this.bounds = new google.maps.LatLngBounds();
                 this.bounds.extend(latLng);
                 this.map.fitBounds(this.bounds);
+
+                // This is disgusting but ngOnChanges requires a change
+                this.zoom = this.zoom + 0.000001;
+
 
                 this.searchLocationMarker = {
                     name: event.name,
