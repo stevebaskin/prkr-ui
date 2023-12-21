@@ -1,10 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { LocationService }                                 from '../../module/location/service/LocationService';
-import { GoogleMap }                                       from '@angular/google-maps';
-import { Router }                                          from '@angular/router';
-import { Location }                                        from '../../module/location/domain/Location';
-import { MarkerService }                                   from '../../module/location/service/MarkerService';
-import { Marker }                                          from '../../module/location/domain/Marker';
+import { AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
+import { LocationService }                                                from '../../module/location/service/LocationService';
+import { GoogleMap }                                                      from '@angular/google-maps';
+import { Location }                                                       from '../../module/location/domain/Location';
+import { MarkerService }                                                  from '../../module/location/service/MarkerService';
+import { Marker }                                                         from '../../module/location/domain/Marker';
 
 
 @Component({
@@ -12,7 +11,7 @@ import { Marker }                                          from '../../module/lo
     styleUrls: ['../style/app-map.scss'],
     templateUrl: '../template/app-map.html',
 })
-export class AppMapComponent implements OnInit {
+export class AppMapComponent implements OnInit, AfterViewInit {
     static readonly selector: string = 'app-map';
 
     @ViewChild(GoogleMap, {static: false}) map: GoogleMap;
@@ -27,7 +26,6 @@ export class AppMapComponent implements OnInit {
 
     constructor(
         private cdRef: ChangeDetectorRef,
-        private router: Router,
         private locationService: LocationService,
         private markerService: MarkerService
     ) {
@@ -104,17 +102,6 @@ export class AppMapComponent implements OnInit {
             if (event) {
                 this.createMarker(event);
                 this.map.fitBounds(this.bounds);
-
-                const listener = this.map.googleMap.addListener('bounds_changed', function (event) {
-                    if (this.getZoom() > 14) {
-                        this.setZoom(14);
-                    }
-                });
-
-                setTimeout(function () {
-                    google.maps.event.removeListener(listener);
-                }, 100);
-
             }
             else {
                 this.getLocations();

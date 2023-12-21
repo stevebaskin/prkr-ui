@@ -52,8 +52,6 @@ export class DashboardPage {
         location.latitude = address.geometry.location.lat();
         location.longitude = address.geometry.location.lng();
         this.locationService.getSearchEventEmitter().emit(location);
-
-        console.log(address);
     }
 
     private initSubscription(): void {
