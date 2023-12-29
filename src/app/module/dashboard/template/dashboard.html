@@ -8,7 +8,8 @@
     </header>
 
     <div class="search">
-        <input (onAddressChange)="onAddressChange($event)" *ngIf="!isLoading" class="form-control form-control-lg places-autocomplete"
+        <input (onAddressChange)="onAddressChange($event)" *ngIf="!isLoading" [options]=getPlacesAutoCompleteOptions()
+               class="form-control form-control-lg places-autocomplete"
                name="location"
                ngx-google-places-autocomplete
                placeholder="Where are we headed?" type="text" />

@@ -45,13 +45,18 @@ export class DashboardPage {
         return 'hmma';
     }
 
-
     public onAddressChange(address: Address) {
         const location: Location = new Location();
         location.name = address.name;
         location.latitude = address.geometry.location.lat();
         location.longitude = address.geometry.location.lng();
         this.locationService.getSearchEventEmitter().emit(location);
+    }
+
+    public getPlacesAutoCompleteOptions(): any {
+        return {
+            componentRestrictions: {country: 'au'}
+        };
     }
 
     private initSubscription(): void {
