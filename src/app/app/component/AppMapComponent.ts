@@ -16,7 +16,7 @@ export class AppMapComponent implements OnInit, AfterViewInit {
 
     @ViewChild(GoogleMap, {static: false}) map: GoogleMap;
 
-    zoom = 15;
+    zoom = 17;
     bounds: google.maps.LatLngBounds = new google.maps.LatLngBounds();
     markers = [];
     currentLocationMarker;
@@ -100,8 +100,10 @@ export class AppMapComponent implements OnInit, AfterViewInit {
             this.markers = [];
 
             if (event) {
+                this.bounds = new google.maps.LatLngBounds();
                 this.createMarker(event);
                 this.map.fitBounds(this.bounds);
+                this.zoom = this.zoom + 0.000001;
             }
             else {
                 this.getLocations();
