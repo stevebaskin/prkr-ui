@@ -12,17 +12,21 @@ html, body {
     height: 100%;
 }
 
+body {
+    touch-action: pan-x pan-y;
+}
+
 app-root {
-    display: grid;
-    height: 100vh;
     background: $yale-blue;
     color: white;
+    display: grid;
+    height: 100vh;
 
     @media (max-width: $small-device-min-width) {
-       grid-template-rows: 1fr 3fr;
+        grid-template-rows: 1fr 3fr;
     }
     @media (min-width: $small-device-min-width) {
-       grid-template-columns: 1fr 3fr;
+        grid-template-columns: 1fr 3fr;
     }
 
     article {
