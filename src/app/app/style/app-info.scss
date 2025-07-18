@@ -1,0 +1,50 @@
+@import "src/app/common/style/common";
+
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba($sky-blue, 0.3);
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        
+        .logo-icon {
+            width: 4rem;
+            height: 4rem;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+            
+            &:hover {
+                animation: shake 0.5s ease-in-out;
+            }
+        }
+        
+        .logo-text {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.5rem;
+            color: $navy-blue;
+            margin: 0;
+            letter-spacing: -0.025em;
+        }
+    }
+}
+
+// Shake animation keyframes
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(3px);
+    }
+    75% {
+        transform: translateX(-3px);
+    }
+}
