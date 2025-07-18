@@ -1,5 +1,31 @@
 @import "src/app/common/style/common";
 
+// Address display styling (shared with dashboard)
+.address-display {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba($sky-blue, 0.1) 0%, rgba($ocean-blue, 0.05) 100%);
+    border-radius: 1rem;
+    border-left: 4px solid $parking-green;
+    
+    i {
+        color: $parking-green;
+        font-size: 1.25rem;
+    }
+    
+    h3 {
+        font-weight: 600;
+        font-size: 1.125rem;
+        color: $navy-blue;
+        margin: 0;
+        letter-spacing: -0.025em;
+        line-height: 1.4;
+    }
+}
+
 header {
     display: grid;
     justify-items: center;

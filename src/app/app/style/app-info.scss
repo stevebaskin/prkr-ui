@@ -5,7 +5,6 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
     border-bottom: 1px solid rgba($sky-blue, 0.3);
     
     .logo {
@@ -19,6 +18,7 @@
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
             transition: transform 0.3s ease;
+            transform-origin: left center; // Add this line
             
             &:hover {
                 animation: shake 0.5s ease-in-out;
@@ -38,12 +38,12 @@
 // Shake animation keyframes
 @keyframes shake {
     0%, 100% {
-        transform: translateX(0);
+        transform: translateX(0) rotate(0deg);
     }
     25% {
-        transform: translateX(3px);
+        transform: translateX(3px) rotate(-45deg);
     }
     75% {
-        transform: translateX(-3px);
+        transform: translateX(-3px) rotate(0deg);
     }
 }

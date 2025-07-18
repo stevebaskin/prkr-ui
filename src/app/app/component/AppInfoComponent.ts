@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: AppInfoComponent.selector,
@@ -8,4 +9,5 @@ import { Component } from '@angular/core';
 export class AppInfoComponent {
     static readonly selector: string = 'app-info';
 
+    constructor(public router: Router) {}
 }
