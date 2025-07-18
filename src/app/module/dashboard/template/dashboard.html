@@ -1,22 +1,18 @@
 <article class="content">
-
-    <header class="title-bar">
-        <button class="btn btn-dark btn-block" routerLink="/locations/add" type="button">
-            <i class="bi-signpost-split-fill"></i>
-            Add a Park
-        </button>
-    </header>
-
     <div class="search">
         <input (onAddressChange)="onAddressChange($event)" *ngIf="!isLoading" [options]=getPlacesAutoCompleteOptions()
-               class="form-control form-control-lg places-autocomplete"
+               class="form-control places-autocomplete"
                name="location"
                ngx-google-places-autocomplete
                placeholder="Where are we headed?" type="text" />
     </div>
 
     <div *ngIf="marker" class="marker">
-        <h3>{{marker.name}}</h3>
+        <div class="address-display">
+            <i class="bi-geo-alt-fill"></i>
+            <h3>{{marker.name}}</h3>
+        </div>
+        
         <div *ngIf="marker.size" class="street-sign">
             <div class="hour-limit">{{marker.hourLimit}}P</div>
             <div class="title">Motor Cycles Only</div>
@@ -33,8 +29,12 @@
             <div class="arrow">⟷</div>
         </div>
 
-
-        <a *ngIf="marker.size" href="{{buildDirectionsLink(marker)}}" class="btn btn-primary" role="button" target="_blank">Get Directions</a>
+        <div class="action-buttons">
+            <button *ngIf="marker.size" (click)="openDirections(marker)" class="btn btn-primary" type="button">
+                <i class="bi-map"></i>
+                Get Directions
+            </button>
+        </div>
     </div>
 
 </article>

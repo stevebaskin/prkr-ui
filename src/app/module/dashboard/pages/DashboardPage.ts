@@ -38,6 +38,11 @@ export class DashboardPage {
         return `https://www.google.com/maps/dir/?api=1&destination=${ marker.position.lat() }%2C${ marker.position.lng() }`;
     }
 
+    openDirections(marker: Marker): void {
+        const directionsUrl = this.buildDirectionsLink(marker);
+        window.open(directionsUrl, '_blank');
+    }
+
     getTimeStringFormat(date: Date): string {
         if (!date.getMinutes()) {
             return 'ha';
