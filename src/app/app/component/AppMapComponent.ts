@@ -8,7 +8,6 @@ import { Marker }                                                         from '
 
 @Component({
     selector: AppMapComponent.selector,
-    styleUrls: ['../style/app-map.scss'],
     templateUrl: '../template/app-map.html',
 })
 export class AppMapComponent implements OnInit, AfterViewInit {
