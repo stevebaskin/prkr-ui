@@ -14,7 +14,7 @@ import { Location }        from '../../location/domain/Location';
 export class DashboardPage {
 
     static readonly selector: string = 'dashboard-page';
-    sizeOptions = [{value: 1, name: '1 - 5'}, {value: 6, name: '6 - 10'}, {value: 11, name: '11 - 20'}, {value: 20, name: '20 +'}];
+    sizeOptions = [{value: 1, name: '1-5'}, {value: 6, name: '6-10'}, {value: 11, name: '11-20'}, {value: 20, name: '20+'}];
     public isLoading: boolean = false;
 
     public marker: Marker;
