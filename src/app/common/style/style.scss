@@ -53,7 +53,6 @@ div.main {
     border-radius: 1.5rem;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
     padding: 2rem;
-    color: $navy-blue;
     z-index: 1000;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -65,10 +64,21 @@ div.main {
     }
     
     @media (max-width: $small-device-min-width) {
-        top: 1rem;
-        left: 1rem;
-        right: 1rem;
-        padding: 1.5rem;
-        border-radius: 1rem;
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        max-width: none;
+        border-radius: 0;
+        box-shadow: none;
+        backdrop-filter: none;
+        border: none;
+        margin: 0;
+        padding: 1rem;
+        
+        &:hover {
+            transform: none;
+            box-shadow: none;
+        }
     }
 }
