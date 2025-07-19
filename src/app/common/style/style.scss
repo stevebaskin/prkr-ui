@@ -25,16 +25,15 @@ body {
 }
 
 app-root {
-    background: $yale-blue;
-    color: white;
     display: grid;
     height: 100vh;
+    position: relative;
 
     @media (max-width: $small-device-min-width) {
-        grid-template-rows: 1fr 3fr;
+        grid-template-rows: 1fr;
     }
     @media (min-width: $small-device-min-width) {
-        grid-template-columns: 1fr 3fr;
+        grid-template-columns: 1fr;
     }
 
     article {
@@ -42,5 +41,34 @@ app-root {
             padding: 1rem;
         }
     }
+}
 
+div.main {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    right: 2rem;
+    max-width: 500px;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    padding: 2rem;
+    color: $navy-blue;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    
+    &:hover {
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: $small-device-min-width) {
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
 }
