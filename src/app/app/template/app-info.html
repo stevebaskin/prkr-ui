@@ -2,11 +2,11 @@
     <header class="title-bar">
         <div class="logo">
             <img src="asset/icon/motorbike.png" alt="Logo" class="logo-icon">
-            <h2 class="logo-text">
+            <h1 class="logo-text">
                 Prkr
-            </h2>
+            </h1>
         </div>
-        <button *ngIf="!router.url.includes('/locations/add')" class="btn btn-accent" routerLink="/locations/add" type="button">
+        <button *ngIf="!router.url.includes('/locations/add')" class="btn btn-secondary" routerLink="/locations/add" type="button">
             <i class="bi-plus-circle-fill"></i>
             Add a Prk
         </button>
