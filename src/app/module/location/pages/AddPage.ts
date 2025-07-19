@@ -74,6 +74,7 @@ export class AddPage implements OnInit {
 
     private initSubscription(): void {
         this.locationService.getMapEventEmitter().subscribe(async event => {
+            this.address = null;
             this.location.latitude = event.latitude;
             this.location.longitude = event.longitude;
             this.address = await this.getAddress(event);

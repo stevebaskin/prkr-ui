@@ -2,26 +2,33 @@
 
     <form>
         <fieldset>
+            <div class="form-field locations">
+                <div class="address-display">
+                    <i class="bi-geo-alt-fill"></i>
+                    <div *ngIf="address; else loadingAddress">
+                        <h3>{{address}}</h3>
+                    </div>
+                    <ng-template #loadingAddress>
+                        <div class="motorbike-loader">
+                            <img src="asset/icon/motorbike.png" alt="Loading..." class="logo-icon">
+                        </div>
+                    </ng-template>
+                </div>
+                <button (click)="getCurrentLocation()" class="btn btn-success" type="button">
+                    <i class="bi-geo-alt-fill"></i>
+                    Use Current Location
+                </button>
+            </div>
+        </fieldset>
+        <fieldset>
             <ul>
-                <li>
-                    <div class="form-label">
-                        <label>Location</label>
-                    </div>
-                    <div class="form-field locations">
-                        {{address}}
-                        <button (click)="getCurrentLocation()" class="btn btn-dark btn-block" type="button">
-                            <i class="bi-geo-alt"></i>
-                            Use Current Location
-                        </button>
-                    </div>
-                </li>
                 <li>
                     <div class="form-label">
                         <label>Space for</label>
                     </div>
                     <div class="form-field sizes">
                         <div *ngFor="let option of sizeOptions">
-                            <label [ngClass]="option.value == location.size ? 'btn-success' : 'btn-outline-secondary'" class="btn"
+                            <label [ngClass]="option.value == location.size ? 'btn-accent' : 'btn-outline-accent'" class="btn"
                                    for="size-{{option.value}}">{{option.name}}
                                 <input [(ngModel)]="location.size" id="size-{{option.value}}" name="size" type="radio" value="{{option.value}}">
                             </label>
@@ -36,9 +43,9 @@
                     <div class="form-field locations">
                         <div class="btn-group">
                             <input [(ngModel)]="location.allDay" [value]="true" checked class="btn-check" id="all-day-yes" name="all-day" type="radio" />
-                            <label [ngClass]="location.allDay ? 'btn-success' : 'btn-secondary'" class="btn" for="all-day-yes">Yes</label>
+                            <label [ngClass]="location.allDay ? 'btn-accent' : 'btn-outline-accent'" class="btn" for="all-day-yes">Yes</label>
                             <input [(ngModel)]="location.allDay" [value]="false" class="btn-check" id="all-day-no" name="all-day" type="radio" />
-                            <label [ngClass]="!location.allDay ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="all-day-no">No</label>
+                            <label [ngClass]="!location.allDay ? 'btn-accent' : 'btn-outline-accent'" class="btn" for="all-day-no">No</label>
                         </div>
                     </div>
                 </li>
@@ -60,10 +67,10 @@
                         <div class="btn-group">
                             <input [(ngModel)]="location.restrictedHours" [value]="true" class="btn-check" id="restricted-hours-yes" name="restricted-hours"
                                    type="radio" />
-                            <label [ngClass]="location.restrictedHours ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="restricted-hours-yes">Yes</label>
+                            <label [ngClass]="location.restrictedHours ? 'btn-accent' : 'btn-outline-accent'" class="btn" for="restricted-hours-yes">Yes</label>
                             <input [(ngModel)]="location.restrictedHours" [value]="false" checked class="btn-check" id="restricted-hours-no"
                                    name="restricted-hours" type="radio" />
-                            <label [ngClass]="!location.restrictedHours ? 'btn-success' : 'btn-secondary'" class="btn btn-secondary" for="restricted-hours-no">No</label>
+                            <label [ngClass]="!location.restrictedHours ? 'btn-accent' : 'btn-outline-accent'" class="btn" for="restricted-hours-no">No</label>
                         </div>
                     </div>
                 </li>
@@ -89,10 +96,10 @@
             <ul>
                 <li>
                     <div class="form-buttons">
-                        <a (click)="onSubmit()" class="btn btn-primary" role="button">Submit</a>
-                        <a (click)="onCancel()" class="btn btn-dark">
+                        <button (click)="onSubmit()" class="btn btn-primary" type="button">Submit</button>
+                        <button (click)="onCancel()" class="btn btn-secondary" type="button">
                             Cancel
-                        </a>
+                        </button>
                     </div>
                 </li>
             </ul>
