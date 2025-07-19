@@ -32,6 +32,8 @@
     }
 
     .street-sign {
+        justify-self: center;
+        width: 75%;
         background-color: white;
         border: 2px solid $parking-green;
         border-radius: 0.5rem;
