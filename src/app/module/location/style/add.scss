@@ -56,18 +56,18 @@
 
 .form-field {
     &.sizes {
-
         display: grid;
-        grid-auto-flow: column;
+        grid-template-columns: repeat(4, 1fr);
         grid-gap: 0.5rem;
-
+        width: 100%;
+        
         input {
             display: none;
         }
-
+        
         label {
             white-space: nowrap;
-            min-width: fit-content;
+            padding: 14px 25px;
         }
     }
 
