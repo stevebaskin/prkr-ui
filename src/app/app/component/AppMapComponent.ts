@@ -22,12 +22,15 @@ export class AppMapComponent implements OnInit, AfterViewInit {
     currentLocationIcon = '/asset/icon/motorbike.png';
     searchLocationMarker;
     searchLocationIcon = '/asset/icon/you-are-here.png';
+    
+    mapOptions: google.maps.MapOptions = {};
 
     constructor(
         private cdRef: ChangeDetectorRef,
         private locationService: LocationService,
         private markerService: MarkerService
     ) {
+        this.setMapOptions();
     }
 
     ngOnInit() {
@@ -92,6 +95,17 @@ export class AppMapComponent implements OnInit, AfterViewInit {
                 position: new google.maps.LatLng(position.coords.latitude, position.coords.longitude)
             };
         });
+    }
+
+    private setMapOptions(): void {
+        // Only add map type controls if viewport is larger than small-device-min-width (600px)
+        if (window.innerWidth > 600) {
+            this.mapOptions = {
+                mapTypeControlOptions: {
+                    position: google.maps.ControlPosition.TOP_RIGHT,
+                }
+            };
+        }
     }
 
     private initSubscriptions(): void {
