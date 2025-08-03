@@ -28,12 +28,10 @@ app-root {
     display: grid;
     height: 100vh;
     position: relative;
+    grid-template-rows: 1fr; // Mobile first - single column
 
-    @media (max-width: $small-device-min-width) {
-        grid-template-rows: 1fr;
-    }
-    @media (min-width: $small-device-min-width) {
-        grid-template-columns: 1fr;
+    @include media-breakpoint-up(sm) {
+        grid-template-columns: 1fr; // Desktop - single column
     }
 
     article {
@@ -44,42 +42,44 @@ app-root {
 }
 
 div.main {
-    position: absolute;
-    top: 2rem;
-    left: 2rem;
-    right: 2rem;
-    max-width: 500px;
+    // Mobile first - full width layout
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100vw;
+    box-sizing: border-box;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    border: none;
+    margin: 0;
+    padding: 1rem;
     background: white;
-    border-radius: 1.5rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    padding: 2rem;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     
     &:hover {
-        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
-        transform: translateY(-2px);
+        transform: none;
+        box-shadow: none;
     }
     
-    @media (max-width: $small-device-min-width) {
-        position: relative;
-        top: 0;
-        left: 0;
-        right: 0;
-        max-width: 100vw;
-        box-sizing: border-box;
-        border-radius: 0;
-        box-shadow: none;
-        backdrop-filter: none;
-        border: none;
-        margin: 0;
-        padding: 1rem;
+    // Desktop styles
+    @include media-breakpoint-up(sm) {
+        position: absolute;
+        top: 2rem;
+        left: 2rem;
+        right: 2rem;
+        max-width: 500px;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 2rem;
         
         &:hover {
-            transform: none;
-            box-shadow: none;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            transform: translateY(-2px);
         }
     }
 }
