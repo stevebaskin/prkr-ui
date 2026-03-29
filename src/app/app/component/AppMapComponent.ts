@@ -18,12 +18,34 @@ export class AppMapComponent implements OnInit, AfterViewInit {
     zoom = 17;
     bounds: google.maps.LatLngBounds = new google.maps.LatLngBounds();
     markers = [];
+    selectedMarkerKey: string = null;
     currentLocationMarker;
-    currentLocationIcon = '/asset/icon/motorbike.png';
     searchLocationMarker;
     searchLocationIcon = '/asset/icon/you-are-here.png';
+    parkingMarkerIcon = {
+        url: '/asset/icon/motorbike.png',
+        scaledSize: new google.maps.Size(48, 48)
+    };
+    selectedParkingMarkerIcon = {
+        url: '/asset/icon/motorbike.png',
+        scaledSize: new google.maps.Size(96, 96)
+    };
+    unselectedParkingMarkerIcon = {
+        url: '/asset/icon/motorbike-grey.png',
+        scaledSize: new google.maps.Size(48, 48)
+    };
+    parkingMarkerOptions: google.maps.MarkerOptions = {
+        opacity: 0.85,
+        zIndex: 1
+    };
+    selectedParkingMarkerOptions: google.maps.MarkerOptions = {
+        opacity: 1,
+        zIndex: 1000
+    };
     
     mapOptions: google.maps.MapOptions = {};
+    private readonly mapClickAfterDragGuardMs: number = 250;
+    private lastMapDragEndAtMs: number = 0;
 
     constructor(
         private cdRef: ChangeDetectorRef,
@@ -39,7 +61,21 @@ export class AppMapComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
+        this.map.googleMap.addListener('dragend', () => {
+            this.lastMapDragEndAtMs = Date.now();
+        });
+
         this.map.googleMap.addListener('click', (event) => {
+            const didJustDragMap = (Date.now() - this.lastMapDragEndAtMs) < this.mapClickAfterDragGuardMs;
+            if (didJustDragMap) {
+                return;
+            }
+
+            if (this.selectedMarkerKey !== null) {
+                this.selectedMarkerKey = null;
+                this.markerService.getMapEventEmitter().emit(null as any);
+            }
+
             if (this.markers.length <= 1) {
                 this.bounds = new google.maps.LatLngBounds();
                 this.markers = [];
@@ -80,12 +116,38 @@ export class AppMapComponent implements OnInit, AfterViewInit {
     }
 
     onClick(marker: Marker) {
+        const markerKey = this.getMarkerSelectionKey(marker);
+        const isToggleOff = markerKey !== null && markerKey === this.selectedMarkerKey;
+
+        if (isToggleOff) {
+            this.selectedMarkerKey = null;
+            this.markerService.getMapEventEmitter().emit(null as any);
+            return;
+        }
+
+        this.selectedMarkerKey = markerKey;
         this.markerService.getMapEventEmitter().emit(marker);
         window.scroll({
             top: 0,
             left: 0,
             behavior: 'smooth'
         });
+    }
+
+    getParkingMarkerIcon(marker: Marker): google.maps.Icon {
+        if (!this.isMarkerSelected()) {
+            return this.parkingMarkerIcon;
+        }
+
+        return this.isSelectedMarker(marker) ? this.selectedParkingMarkerIcon : this.unselectedParkingMarkerIcon;
+    }
+
+    getParkingMarkerOptions(marker: Marker): google.maps.MarkerOptions {
+        if (!this.isMarkerSelected()) {
+            return this.parkingMarkerOptions;
+        }
+
+        return this.isSelectedMarker(marker) ? this.selectedParkingMarkerOptions : this.parkingMarkerOptions;
     }
 
     setCurrentLocation() {
@@ -111,6 +173,7 @@ export class AppMapComponent implements OnInit, AfterViewInit {
     private initSubscriptions(): void {
         this.locationService.getFormEventEmitter().subscribe(event => {
             this.markers = [];
+            this.selectedMarkerKey = null;
 
             if (event) {
                 this.bounds = new google.maps.LatLngBounds();
@@ -144,5 +207,31 @@ export class AppMapComponent implements OnInit, AfterViewInit {
                 this.searchLocationMarker = null;
             }
         });
+
+        this.markerService.getMapEventEmitter().subscribe(event => {
+            if (!event) {
+                this.selectedMarkerKey = null;
+            }
+        });
+    }
+
+    private isMarkerSelected(): boolean {
+        return this.selectedMarkerKey !== null;
+    }
+
+    private isSelectedMarker(marker: Marker): boolean {
+        return this.selectedMarkerKey !== null && this.getMarkerSelectionKey(marker) === this.selectedMarkerKey;
+    }
+
+    private getMarkerSelectionKey(marker: Marker): string {
+        if (marker && marker.id !== null && marker.id !== undefined) {
+            return `id:${ marker.id }`;
+        }
+
+        if (marker && marker.position) {
+            return `pos:${ marker.position.lat() },${ marker.position.lng() }`;
+        }
+
+        return null;
     }
 }

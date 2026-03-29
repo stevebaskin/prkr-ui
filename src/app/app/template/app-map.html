@@ -7,7 +7,8 @@
     <map-marker
         (mapClick)="onClick(marker)"
         *ngFor="let marker of markers"
-        [icon]="currentLocationIcon"
+        [icon]="getParkingMarkerIcon(marker)"
+        [options]="getParkingMarkerOptions(marker)"
         [position]="marker.position"
     >
 
