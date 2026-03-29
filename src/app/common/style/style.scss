@@ -53,8 +53,9 @@ div.main {
     box-shadow: none;
     backdrop-filter: none;
     border: none;
-    margin: 0;
+    margin: 1rem 0;
     padding: 1rem;
+    max-height: calc(100dvh - 2rem);
     background: white;
     z-index: 1000;
     transition: all 0.3s ease;
@@ -70,7 +71,9 @@ div.main {
         top: 2rem;
         left: 2rem;
         right: 2rem;
+        margin: 0;
         max-width: 500px;
+        max-height: calc(100dvh - 4rem);
         border-radius: 1.5rem;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
         backdrop-filter: blur(10px);
