@@ -1,27 +1,82 @@
-# Ui
+# UI
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.6.
+## Overview
 
-## Development server
+This module is the Angular frontend for Prkr. It provides a Sydney motorbike parking map with search, location details, and add-location flows, and it relies on Google Maps and Google Places for core functionality.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Stack
 
-## Code scaffolding
+- Angular 13
+- TypeScript
+- SCSS
+- Bootstrap
+- `@ng-bootstrap/ng-bootstrap`
+- `@angular/google-maps`
+- `ngx-google-places-autocomplete`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Project Layout
 
-## Build
+- `src/app/app`: app shell, map, and info components
+- `src/app/module/dashboard`: landing page and address search flow
+- `src/app/module/location`: location domain model, add page, and location service
+- `src/app/module/core/service/ApiService.ts`: shared HTTP wrapper
+- `src/environments`: Angular environment flags
+- `proxy.config.json` and `proxy-prod.config.json`: Angular dev-server proxy configuration
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Local Development Prerequisites
 
-## Running unit tests
+- Node.js and npm
+- Installed dependencies via `npm install`
+- A browser with geolocation support
+- Internet access for Google Maps JavaScript and Places APIs
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Running Locally
 
-## Running end-to-end tests
+```bash
+npm install
+npm start
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+The development server runs on `http://localhost:4200` by default.
 
-## Further help
+## Backend API Expectations
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The frontend currently uses a hardcoded backend base URL in `src/app/module/location/service/LocationService.ts`:
+
+- `http://localhost:8080/api/locations`
+
+`proxy.config.json` and `proxy-prod.config.json` exist for Angular dev-server proxying, but the current service implementation uses an absolute URL, so those proxy settings are not the active path for location API requests.
+
+Local UI development therefore expects the API to be running on `http://localhost:8080`.
+
+## External Services
+
+`src/index.html` currently loads:
+
+- Google Maps JavaScript API with the Places library
+- Google Analytics via `gtag`
+
+The Google Maps API key is currently embedded in `src/index.html`.
+
+Map rendering, Places autocomplete, reverse geocoding, and Google Maps directions all depend on those external services being available.
+
+## Key User Flows
+
+- Browse parking locations on the map
+- Search by address using Places autocomplete
+- Show the user’s current location on the map
+- Add a new parking location by clicking the map or using geolocation, then submit it to the API
+- Open Google Maps directions for a selected parking marker
+
+## Build And Test
+
+```bash
+npm run build
+npm test
+```
+
+## Known Implementation Notes
+
+- Geolocation is used in both the map flow and the add-location flow
+- The add-location page falls back to Sydney coordinates before geolocation resolves
+- Address search is restricted to Australia through the Places autocomplete options
