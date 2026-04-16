@@ -7,7 +7,7 @@ import { Location }                 from '../domain/Location';
 export class LocationService extends BaseService<Location> {
 
     // protected baseUri = 'http://localhost:8080/api/locations';
-    protected baseUri = 'https://park24.ap-southeast-2.elasticbeanstalk.com/api/locations';
+    protected baseUri = 'https://prkr-api.onrender.com/api/locations';
 
 
     protected mapEventEmitter: EventEmitter<Location> = new EventEmitter();
