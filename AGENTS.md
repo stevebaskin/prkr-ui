@@ -44,5 +44,5 @@ The dev server runs on `http://localhost:4200` by default.
 - Be careful with Google Maps, Places autocomplete, geolocation, reverse geocoding, and directions behavior; these are core user flows.
 - The backend URL currently lives in `src/app/module/location/service/LocationService.ts`.
 - `proxy.config.json` and `proxy-prod.config.json` exist, but the current absolute backend URL means those proxy configs are not the active path for location API requests.
-- The Google Maps API key is currently loaded from `src/index.html`; avoid moving, exposing, or rotating keys unless the task is specifically about configuration or secrets.
+- The Google Maps API key is read from `GOOGLE_MAPS_API_KEY` in the shell environment or `ui/.env`; `npm start`, `npm run build`, and `npm run watch` generate ignored `src/index.generated.html` from `src/index.html`.
 - Keep external service assumptions visible when changing map or search behavior.

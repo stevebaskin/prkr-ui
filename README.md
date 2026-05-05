@@ -34,8 +34,11 @@ This module is the Angular frontend for Prkr. It provides a Sydney motorbike par
 
 ```bash
 npm install
+cp .env.example .env
 npm start
 ```
+
+Set `GOOGLE_MAPS_API_KEY` in `.env` before starting the app.
 
 The development server runs on `http://localhost:4200` by default.
 
@@ -56,7 +59,7 @@ Local UI development therefore expects the API to be running on `http://localhos
 - Google Maps JavaScript API with the Places library
 - Google Analytics via `gtag`
 
-The Google Maps API key is currently embedded in `src/index.html`.
+The Google Maps API key is expected as `GOOGLE_MAPS_API_KEY` in `.env` or the shell environment. `npm start`, `npm run build`, and `npm run watch` generate `src/index.generated.html` from `src/index.html` and inject that value into the `__GOOGLE_MAPS_API_KEY__` placeholder. Do not commit real Google API keys to this repository.
 
 Map rendering, Places autocomplete, reverse geocoding, and Google Maps directions all depend on those external services being available.
 

@@ -3,8 +3,12 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
+        "prepare:index": "node scripts/inject-google-maps-key.js",
+        "prestart": "npm run prepare:index",
         "start": "ng serve",
+        "prebuild": "npm run prepare:index",
         "build": "ng build",
+        "prewatch": "npm run prepare:index",
         "watch": "ng build --watch --configuration development",
         "test": "ng test"
     },
