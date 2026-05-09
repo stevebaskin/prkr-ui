@@ -40,6 +40,7 @@
         border-radius: 0.5rem;
         color: $parking-green;
         display: grid;
+        font-size: 1rem;
         justify-items: center;
         margin: 0.35rem 0;
         padding: 1rem;
@@ -130,6 +131,17 @@
                 color: $navy-blue;
                 text-decoration: underline;
             }
+        }
+    }
+}
+
+@media (max-height: 850px) {
+    .marker {
+        .street-sign {
+            font-size: 0.8rem;
+            width: 60%;
+            max-width: 235px;
+            padding: 0.75rem;
         }
     }
 }
