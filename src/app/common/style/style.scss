@@ -56,6 +56,8 @@ div.main {
     margin: 1rem 0;
     padding: 1rem;
     max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+    overflow-x: hidden;
     background: white;
     z-index: 1000;
     transition: all 0.3s ease;

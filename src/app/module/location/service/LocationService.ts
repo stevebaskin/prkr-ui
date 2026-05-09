@@ -2,6 +2,12 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { BaseService }              from '../../../common/service/BaseService';
 import { ApiService }               from '../../core/service/ApiService';
 import { Location }                 from '../domain/Location';
+import { Observable }               from 'rxjs';
+
+export interface LocationReportRequest {
+    issueType: string;
+    details: string;
+}
 
 @Injectable()
 export class LocationService extends BaseService<Location> {
@@ -30,6 +36,10 @@ export class LocationService extends BaseService<Location> {
 
     public getSearchEventEmitter(): EventEmitter<Location> {
         return this.searchEventEmitter;
+    }
+
+    public reportInconsistency(locationId: number, report: LocationReportRequest): Observable<void> {
+        return this.apiService.post(`${ this.getBaseUri() }/${ locationId }/reports`, report);
     }
 
 }

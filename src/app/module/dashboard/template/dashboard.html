@@ -34,7 +34,68 @@
                 <i class="bi-map"></i>
                 Get Directions
             </button>
+            <button *ngIf="canReportMarker(marker)" (click)="openReportForm()" class="report-link" type="button">
+                <i class="bi-flag"></i>
+                Report Inconsistency
+            </button>
         </div>
+
+        <div *ngIf="reportSuccessMessage" class="report-message success">
+            {{reportSuccessMessage}}
+        </div>
+    </div>
+
+    <div *ngIf="canReportMarker(marker) && isReportFormOpen" (click)="cancelReport()" class="report-modal-backdrop">
+        <form (click)="$event.stopPropagation()" class="report-modal">
+            <header class="report-modal-header">
+                <div>
+                    <h2>Report Inconsistency</h2>
+                    <p>{{marker.name}}</p>
+                </div>
+                <button (click)="cancelReport()" [disabled]="isReportSubmitting" class="report-modal-close" type="button">
+                    <i class="bi-x-lg"></i>
+                </button>
+            </header>
+
+            <div class="form-field">
+                <label for="report-issue-type">What is wrong?</label>
+                <div class="select-field">
+                    <select [(ngModel)]="reportIssueType" [disabled]="isReportSubmitting" class="form-control" id="report-issue-type" name="reportIssueType">
+                        <option value="" disabled>Select an issue</option>
+                        <option *ngFor="let option of reportIssueOptions" [value]="option.value">{{option.name}}</option>
+                    </select>
+                    <i class="bi-chevron-down"></i>
+                </div>
+            </div>
+
+            <div class="form-field">
+                <label for="report-details">Details</label>
+                <textarea
+                    [(ngModel)]="reportDetails"
+                    [attr.maxlength]="reportDetailsMaxLength"
+                    [disabled]="isReportSubmitting"
+                    class="form-control"
+                    id="report-details"
+                    name="reportDetails"
+                    placeholder="{{isReportDetailsRequired() ? 'What should be updated?' : 'Optional note'}}"
+                    rows="3"></textarea>
+                <div class="character-count">{{(reportDetails || '').length}}/{{reportDetailsMaxLength}}</div>
+            </div>
+
+            <div *ngIf="reportErrorMessage" class="report-message error">
+                {{reportErrorMessage}}
+            </div>
+
+            <div class="report-buttons">
+                <button (click)="submitReport()" [disabled]="isReportSubmitting" class="btn btn-primary" type="button">
+                    <i class="bi-send"></i>
+                    {{isReportSubmitting ? 'Sending...' : 'Send Report'}}
+                </button>
+                <button (click)="cancelReport()" [disabled]="isReportSubmitting" class="btn btn-secondary" type="button">
+                    Cancel
+                </button>
+            </div>
+        </form>
     </div>
 
 </article>

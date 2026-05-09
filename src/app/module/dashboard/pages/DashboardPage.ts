@@ -15,9 +15,21 @@ export class DashboardPage {
 
     static readonly selector: string = 'dashboard-page';
     sizeOptions = [{value: 1, name: '1 - 5'}, {value: 6, name: '6 - 10'}, {value: 11, name: '11 - 20'}, {value: 20, name: '20+'}];
+    reportIssueOptions = [
+        {value: 'NO_LONGER_EXISTS', name: 'Parking no longer exists'},
+        {value: 'DETAILS_WRONG', name: 'Details are wrong'},
+        {value: 'OTHER', name: 'Other'}
+    ];
+    reportDetailsMaxLength = 200;
     public isLoading: boolean = false;
 
     public marker: Marker;
+    public isReportFormOpen: boolean = false;
+    public isReportSubmitting: boolean = false;
+    public reportIssueType: string = '';
+    public reportDetails: string = '';
+    public reportSuccessMessage: string = null;
+    public reportErrorMessage: string = null;
 
     constructor(
         private locationService: LocationService,
@@ -43,6 +55,64 @@ export class DashboardPage {
         window.open(directionsUrl, '_blank');
     }
 
+    canReportMarker(marker: Marker): boolean {
+        return !!(marker && marker.id);
+    }
+
+    openReportForm(): void {
+        this.isReportFormOpen = true;
+        this.reportSuccessMessage = null;
+        this.reportErrorMessage = null;
+    }
+
+    cancelReport(): void {
+        this.resetReportForm();
+    }
+
+    submitReport(): void {
+        this.reportSuccessMessage = null;
+        this.reportErrorMessage = null;
+
+        const details = (this.reportDetails || '').trim();
+        if (!this.canReportMarker(this.marker)) {
+            this.reportErrorMessage = 'Select a saved parking spot before reporting.';
+            return;
+        }
+
+        if (!this.reportIssueType) {
+            this.reportErrorMessage = 'Select the issue you want to report.';
+            return;
+        }
+
+        if (this.isReportDetailsRequired() && !details) {
+            this.reportErrorMessage = 'Tell us what needs to change at this spot.';
+            return;
+        }
+
+        if (details.length > this.reportDetailsMaxLength) {
+            this.reportErrorMessage = `Keep the report to ${ this.reportDetailsMaxLength } characters.`;
+            return;
+        }
+
+        this.isReportSubmitting = true;
+        this.locationService.reportInconsistency(this.marker.id, {
+            issueType: this.reportIssueType,
+            details
+        }).subscribe({
+            next: () => {
+                this.isReportSubmitting = false;
+                this.isReportFormOpen = false;
+                this.reportDetails = '';
+                this.reportIssueType = '';
+                this.reportSuccessMessage = 'Thanks, the report has been sent.';
+            },
+            error: () => {
+                this.isReportSubmitting = false;
+                this.reportErrorMessage = 'The report could not be sent. Please try again.';
+            }
+        });
+    }
+
     getTimeStringFormat(date: Date): string {
         if (!date.getMinutes()) {
             return 'ha';
@@ -64,10 +134,24 @@ export class DashboardPage {
         };
     }
 
+    public isReportDetailsRequired(): boolean {
+        return this.reportIssueType !== 'NO_LONGER_EXISTS';
+    }
+
     private initSubscription(): void {
         this.markerService.getMapEventEmitter().subscribe(event => {
             this.marker = event;
+            this.resetReportForm();
         });
+    }
+
+    private resetReportForm(): void {
+        this.isReportFormOpen = false;
+        this.isReportSubmitting = false;
+        this.reportIssueType = '';
+        this.reportDetails = '';
+        this.reportSuccessMessage = null;
+        this.reportErrorMessage = null;
     }
 
 }

@@ -101,11 +101,12 @@
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/asset"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/app/common/style/style.scss",
+              "src/app/common/style/common.scss",
+              "src/app/common/style/forms.scss"
             ],
             "scripts": []
           }
