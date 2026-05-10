@@ -1,0 +1,15 @@
+---
+description: Write UI SCSS mobile first, with larger screens layered through min-width breakpoints.
+globs: ["src/**/*.scss"]
+---
+
+# Use mobile-first SCSS
+
+Write component and shared SCSS from the smallest practical viewport first, then add layout or density enhancements for wider screens.
+
+- Put the default styles outside media queries; these defaults should work on narrow mobile screens.
+- Use `min-width` media queries for tablet and desktop enhancements, rather than `max-width` overrides for mobile fixes.
+- Keep mobile layouts simple and resilient: prefer single-column flow, natural content order, flexible widths, and readable spacing before adding wider-screen grids or side-by-side layouts.
+- Avoid fixed widths, fixed heights, and absolute positioning unless the component genuinely needs them; use responsive constraints such as `min()`, `max()`, `clamp()`, percentages, flex, or grid tracks where appropriate.
+- Make interactive targets usable on touch screens, with enough spacing that map, search, marker, and add-location flows remain comfortable on phones.
+- When editing existing SCSS, move toward mobile-first structure within the touched component without broad unrelated rewrites.
