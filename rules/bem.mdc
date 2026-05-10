@@ -1,0 +1,15 @@
+---
+description: Use BEM naming for UI CSS classes in Angular templates and SCSS.
+globs: ["src/**/*.html", "src/**/*.scss"]
+---
+
+# Use BEM for UI classes
+
+Use BEM naming for component CSS classes in Angular templates and SCSS.
+
+- Blocks should describe the component or standalone UI object, for example `location-card`.
+- Elements should use double underscores, for example `location-card__title`.
+- Modifiers should use double hyphens, for example `location-card--selected` or `location-card__action--primary`.
+- Prefer semantic class names tied to the UI role, not visual appearance such as `blue-text` or `left-box`.
+- Keep BEM classes local to the component stylesheet where possible; avoid broad descendant selectors when a BEM class would make the relationship explicit.
+- When changing existing styles, move toward BEM without broad unrelated renames unless the task explicitly calls for cleanup.
