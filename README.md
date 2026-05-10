@@ -44,11 +44,12 @@ The development server runs on `http://localhost:4200` by default.
 
 ## Backend API Expectations
 
-The frontend currently uses a hardcoded backend base URL in `src/app/module/location/service/LocationService.ts`:
+The backend API domain is configured in Angular environment files:
 
-- `http://localhost:8080/api/locations`
+- Local development: `src/environments/environment.ts`
+- Production builds: `src/environments/environment.prod.ts`
 
-`proxy.config.json` and `proxy-prod.config.json` exist for Angular dev-server proxying, but the current service implementation uses an absolute URL, so those proxy settings are not the active path for location API requests.
+`proxy.config.json` and `proxy-prod.config.json` exist for Angular dev-server proxying, but the current service implementation uses an absolute URL built from `environment.apiBaseUri`, so those proxy settings are not the active path for location API requests.
 
 Local UI development therefore expects the API to be running on `http://localhost:8080`.
 

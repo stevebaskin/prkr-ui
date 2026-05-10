@@ -3,6 +3,7 @@ import { BaseService }              from '../../../common/service/BaseService';
 import { ApiService }               from '../../core/service/ApiService';
 import { Location }                 from '../domain/Location';
 import { Observable }               from 'rxjs';
+import { environment }              from '../../../../environments/environment';
 
 export interface LocationReportRequest {
     issueType: string;
@@ -12,9 +13,7 @@ export interface LocationReportRequest {
 @Injectable()
 export class LocationService extends BaseService<Location> {
 
-    // protected baseUri = 'http://localhost:8080/api/locations';
-    protected baseUri = 'https://prkr-api.onrender.com/api/locations';
-
+    protected baseUri = `${ environment.apiBaseUri }/api/locations`;
 
     protected mapEventEmitter: EventEmitter<Location> = new EventEmitter();
 
