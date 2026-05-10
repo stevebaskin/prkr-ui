@@ -7,25 +7,25 @@
     border-bottom: 1px solid rgba($sky-blue, 0.3);
     padding-bottom: 0.75rem;
     
-    .logo {
+    .title-bar__logo {
         display: flex;
         align-items: center;
         gap: 0.5rem;
         
-        .logo-icon {
+        .title-bar__logo-icon {
             width: 3rem;
             height: 3rem;
             object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
             transition: transform 0.3s ease;
-            transform-origin: left center; // Add this line
+            transform-origin: left center;
             
             &:hover {
                 animation: shake 0.5s ease-in-out;
             }
         }
         
-        .logo-text {
+        .title-bar__logo-text {
             font-weight: 600;
             font-size: 1.35rem;
             color: $navy-blue;

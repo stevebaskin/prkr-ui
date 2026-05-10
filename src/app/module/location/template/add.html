@@ -2,15 +2,15 @@
 
     <form>
         <fieldset>
-            <div class="form-field locations">
+            <div class="form-field form-field--locations">
                 <div class="address-display">
                     <i class="bi-geo-alt-fill"></i>
                     <div *ngIf="address; else loadingAddress">
                         <h3>{{address}}</h3>
                     </div>
                     <ng-template #loadingAddress>
-                        <div class="motorbike-loader">
-                            <img src="asset/icon/motorbike.png" alt="Loading..." class="logo-icon">
+                        <div class="address-display__loader">
+                            <img src="asset/icon/motorbike.png" alt="Loading..." class="address-display__loader-icon">
                         </div>
                     </ng-template>
                 </div>
@@ -26,7 +26,7 @@
                     <div class="form-label">
                         <label>Space for</label>
                     </div>
-                    <div class="form-field sizes">
+                    <div class="form-field form-field--sizes">
                         <div *ngFor="let option of sizeOptions">
                             <label [ngClass]="option.value == location.size ? 'btn-accent' : 'btn-outline-accent'" class="btn"
                                    for="size-{{option.value}}">{{option.name}}
@@ -40,7 +40,7 @@
                     <div class="form-label">
                         <label>All day parking</label>
                     </div>
-                    <div class="form-field locations">
+                    <div class="form-field form-field--locations">
                         <div class="btn-group">
                             <input [(ngModel)]="location.allDay" [value]="true" checked class="btn-check" id="all-day-yes" name="all-day" type="radio" />
                             <label [ngClass]="location.allDay ? 'btn-accent' : 'btn-outline-accent'" class="btn" for="all-day-yes">Yes</label>
@@ -63,7 +63,7 @@
                     <div class="form-label">
                         <label>Restricted Hours</label>
                     </div>
-                    <div class="form-field locations">
+                    <div class="form-field form-field--locations">
                         <div class="btn-group">
                             <input [(ngModel)]="location.restrictedHours" [value]="true" class="btn-check" id="restricted-hours-yes" name="restricted-hours"
                                    type="radio" />
@@ -79,7 +79,7 @@
                     <div class="form-label">
                         <label>Available Times</label>
                     </div>
-                    <div class="form-field locations">
+                    <div class="form-field form-field--locations">
                         <div class="btn-group">
                             <input (ngModelChange)="location.startTime = $event" [ngModel]="location.startTime | date:'hh:mm'" class="form-control" name="start-time" placeholder="Start Time"
                                    type="time" />

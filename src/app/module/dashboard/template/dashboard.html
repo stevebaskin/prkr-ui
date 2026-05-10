@@ -8,58 +8,58 @@
     </div>
 
     <div *ngIf="marker" class="marker">
-        <div class="address-display">
+        <div class="marker__address">
             <i class="bi-geo-alt-fill"></i>
             <h3>{{marker.name}}</h3>
         </div>
         
         <div *ngIf="marker.size" class="street-sign">
-            <div class="hour-limit">{{marker.hourLimit}}P</div>
-            <div class="title">Motor Cycles Only</div>
-            <div class="size">Spaces: {{getSizeOptionByValue(marker.size)}}</div>
-            <div *ngIf="marker.startTime && marker.endTime" class="times">
-                <div class="start-time">
+            <div class="street-sign__hour-limit">{{marker.hourLimit}}P</div>
+            <div class="street-sign__title">Motor Cycles Only</div>
+            <div class="street-sign__size">Spaces: {{getSizeOptionByValue(marker.size)}}</div>
+            <div *ngIf="marker.startTime && marker.endTime" class="street-sign__times">
+                <div class="street-sign__start-time">
                     {{marker.startTime | date: getTimeStringFormat(marker.startTime)}}
                 </div>
                 <span>-</span>
-                <div class="end-time">
+                <div class="street-sign__end-time">
                     {{marker.endTime | date: getTimeStringFormat(marker.endTime)}}
                 </div>
             </div>
-            <div class="arrow">⟷</div>
+            <div class="street-sign__arrow">⟷</div>
         </div>
 
-        <div class="action-buttons">
+        <div class="marker__actions">
             <button *ngIf="marker.size" (click)="openDirections(marker)" class="btn btn-primary" type="button">
                 <i class="bi-map"></i>
                 Get Directions
             </button>
-            <button *ngIf="canReportMarker(marker)" (click)="openReportForm()" class="report-link" type="button">
+            <button *ngIf="canReportMarker(marker)" (click)="openReportForm()" class="marker__report-link" type="button">
                 <i class="bi-flag"></i>
                 Report Inconsistency
             </button>
         </div>
 
-        <div *ngIf="reportSuccessMessage" class="report-message success">
+        <div *ngIf="reportSuccessMessage" class="report-message report-message--success">
             {{reportSuccessMessage}}
         </div>
     </div>
 
-    <div *ngIf="canReportMarker(marker) && isReportFormOpen" (click)="cancelReport()" class="report-modal-backdrop">
+    <div *ngIf="canReportMarker(marker) && isReportFormOpen" (click)="cancelReport()" class="report-modal__backdrop">
         <form (click)="$event.stopPropagation()" class="report-modal">
-            <header class="report-modal-header">
+            <header class="report-modal__header">
                 <div>
                     <h2>Report Inconsistency</h2>
                     <p>{{marker.name}}</p>
                 </div>
-                <button (click)="cancelReport()" [disabled]="isReportSubmitting" class="report-modal-close" type="button">
+                <button (click)="cancelReport()" [disabled]="isReportSubmitting" class="report-modal__close" type="button">
                     <i class="bi-x-lg"></i>
                 </button>
             </header>
 
             <div class="form-field">
                 <label for="report-issue-type">What is wrong?</label>
-                <div class="select-field">
+                <div class="report-modal__select-field">
                     <select [(ngModel)]="reportIssueType" [disabled]="isReportSubmitting" class="form-control" id="report-issue-type" name="reportIssueType">
                         <option value="" disabled>Select an issue</option>
                         <option *ngFor="let option of reportIssueOptions" [value]="option.value">{{option.name}}</option>
@@ -79,14 +79,14 @@
                     name="reportDetails"
                     placeholder="{{isReportDetailsRequired() ? 'What should be updated?' : 'Optional note'}}"
                     rows="3"></textarea>
-                <div class="character-count">{{(reportDetails || '').length}}/{{reportDetailsMaxLength}}</div>
+                <div class="report-modal__character-count">{{(reportDetails || '').length}}/{{reportDetailsMaxLength}}</div>
             </div>
 
-            <div *ngIf="reportErrorMessage" class="report-message error">
+            <div *ngIf="reportErrorMessage" class="report-message report-message--error">
                 {{reportErrorMessage}}
             </div>
 
-            <div class="report-buttons">
+            <div class="report-modal__buttons">
                 <button (click)="submitReport()" [disabled]="isReportSubmitting" class="btn btn-primary" type="button">
                     <i class="bi-send"></i>
                     {{isReportSubmitting ? 'Sending...' : 'Send Report'}}

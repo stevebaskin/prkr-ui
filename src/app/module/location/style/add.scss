@@ -23,13 +23,13 @@
         line-height: 1.4;
     }
 
-    .motorbike-loader {
+    .address-display__loader {
         position: relative;
         width: 100%;
         height: 2rem;
         overflow: hidden;
 
-        .logo-icon {
+        .address-display__loader-icon {
             width: 2rem;
             height: 2rem;
             position: absolute;
@@ -57,7 +57,7 @@
 }
 
 .form-field {
-    &.sizes {
+    &.form-field--sizes {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         justify-items: center;
@@ -78,7 +78,7 @@
         }
     }
 
-    &.locations {
+    &.form-field--locations {
         display: grid;
         grid-gap: 0.5rem;
     }
