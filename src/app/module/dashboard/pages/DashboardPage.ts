@@ -2,7 +2,6 @@ import { Component }       from '@angular/core';
 import { LocationService } from '../../location/service/LocationService';
 import { MarkerService }   from '../../location/service/MarkerService';
 import { Marker }          from '../../location/domain/Marker';
-import { Address }         from 'ngx-google-places-autocomplete/objects/address';
 import { Location }        from '../../location/domain/Location';
 
 
@@ -120,7 +119,11 @@ export class DashboardPage {
         return 'hmma';
     }
 
-    public onAddressChange(address: Address) {
+    public onAddressChange(address: google.maps.places.PlaceResult) {
+        if (!address.geometry || !address.geometry.location) {
+            return;
+        }
+
         const location: Location = new Location();
         location.name = address.name;
         location.latitude = address.geometry.location.lat();

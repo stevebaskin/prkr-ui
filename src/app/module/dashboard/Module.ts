@@ -2,19 +2,19 @@ import { NgModule }          from '@angular/core';
 import { CommonModule }      from '@angular/common';
 import { DashboardPage }     from './pages/DashboardPage';
 import { Router }            from './Router';
-import { GooglePlaceModule } from 'ngx-google-places-autocomplete';
 import { FormsModule }       from '@angular/forms';
+import { GooglePlacesAutocompleteDirective } from './directive/GooglePlacesAutocompleteDirective';
 
 
 @NgModule({
     declarations: [
-        DashboardPage
+        DashboardPage,
+        GooglePlacesAutocompleteDirective
     ],
     imports: [
         CommonModule,
         Router,
         FormsModule,
-        GooglePlaceModule,
     ],
 
 })

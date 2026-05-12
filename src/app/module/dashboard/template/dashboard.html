@@ -3,7 +3,7 @@
         <input (onAddressChange)="onAddressChange($event)" *ngIf="!isLoading" [options]=getPlacesAutoCompleteOptions()
                class="form-control places-autocomplete"
                name="location"
-               ngx-google-places-autocomplete
+               appGooglePlacesAutocomplete
                placeholder="Where are we headed?" type="text" />
     </div>
 
