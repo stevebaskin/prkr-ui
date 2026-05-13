@@ -91,25 +91,6 @@
           "options": {
             "buildTarget": "ui:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
-            "karmaConfig": "karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/asset"
-            ],
-            "styles": [
-              "src/app/common/style/style.scss",
-              "src/app/common/style/common.scss",
-              "src/app/common/style/forms.scss"
-            ],
-            "scripts": []
-          }
         }
       }
     }

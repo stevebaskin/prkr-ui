@@ -72,11 +72,10 @@ Map rendering, Places autocomplete, reverse geocoding, and Google Maps direction
 - Add a new parking location by clicking the map or using geolocation, then submit it to the API
 - Open Google Maps directions for a selected parking marker
 
-## Build And Test
+## Build
 
 ```bash
 npm run build
-npm test
 ```
 
 ## Known Implementation Notes

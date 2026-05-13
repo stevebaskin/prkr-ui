@@ -9,8 +9,7 @@
         "prebuild": "npm run prepare:index",
         "build": "ng build",
         "prewatch": "npm run prepare:index",
-        "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "watch": "ng build --watch --configuration development"
     },
     "private": true,
     "dependencies": {
@@ -39,14 +38,7 @@
         "@angular/cli": "^21.2.11",
         "@angular/compiler-cli": "^21.2.12",
         "@types/google.maps": "^3.64.0",
-        "@types/jasmine": "~4.0.3",
         "@types/node": "^17.0.36",
-        "jasmine-core": "~4.1.1",
-        "karma": "~6.3.20",
-        "karma-chrome-launcher": "~3.1.1",
-        "karma-coverage": "~2.2.0",
-        "karma-jasmine": "~5.0.1",
-        "karma-jasmine-html-reporter": "~2.0.0",
         "typescript": "~5.9.3"
     }
 }

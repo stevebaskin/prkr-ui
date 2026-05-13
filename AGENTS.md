@@ -31,7 +31,6 @@ Run commands from this `ui` directory.
 npm install
 npm start
 npm run build
-npm test
 ```
 
 The dev server runs on `http://localhost:4200` by default.
