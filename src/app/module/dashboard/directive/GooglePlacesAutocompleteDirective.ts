@@ -12,6 +12,7 @@ import {
 
 @Directive({
     selector: '[appGooglePlacesAutocomplete]',
+    standalone: false
 })
 export class GooglePlacesAutocompleteDirective implements AfterViewInit, OnDestroy {
 

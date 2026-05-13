@@ -8,6 +8,7 @@ import { Router }                               from '@angular/router';
     selector: AddPage.selector,
     styleUrls: ['../style/add.scss'],
     templateUrl: '../template/add.html',
+    standalone: false
 })
 export class AddPage implements OnInit {
 

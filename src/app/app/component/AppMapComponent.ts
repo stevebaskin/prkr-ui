@@ -9,6 +9,7 @@ import { Marker }                                                         from '
 @Component({
     selector: AppMapComponent.selector,
     templateUrl: '../template/app-map.html',
+    standalone: false
 })
 export class AppMapComponent implements OnInit, AfterViewInit {
     static readonly selector: string = 'app-map';

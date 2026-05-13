@@ -9,6 +9,7 @@ import { Location }        from '../../location/domain/Location';
     selector: DashboardPage.selector,
     styleUrls: ['../style/dashboard.scss'],
     templateUrl: '../template/dashboard.html',
+    standalone: false
 })
 export class DashboardPage {
 
