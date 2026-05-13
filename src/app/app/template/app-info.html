@@ -1,16 +1,18 @@
 <div class="main">
-    <header class="title-bar">
-        <div class="title-bar__logo">
-            <img src="asset/icon/motorbike.png" alt="Logo" class="title-bar__logo-icon">
-            <h1 class="title-bar__logo-text">
-                Prkr
-            </h1>
-        </div>
-        <button *ngIf="!router.url.includes('/locations/add')" class="btn btn-secondary" routerLink="/locations/add" type="button">
-            <i class="bi-plus-circle-fill"></i>
-            Add a Prk
-        </button>
-    </header>
-    <router-outlet></router-outlet>
+  <header class="title-bar">
+    <div class="title-bar__logo">
+      <img src="asset/icon/motorbike.png" alt="Logo" class="title-bar__logo-icon">
+      <h1 class="title-bar__logo-text">
+        Prkr
+      </h1>
+    </div>
+    @if (!router.url.includes('/locations/add')) {
+      <button class="btn btn-secondary" routerLink="/locations/add" type="button">
+        <i class="bi-plus-circle-fill"></i>
+        Add a Prk
+      </button>
+    }
+  </header>
+  <router-outlet></router-outlet>
 
 </div>

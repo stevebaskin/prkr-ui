@@ -1,32 +1,34 @@
 <google-map
-    [zoom]="zoom"
-    height="100vh"
-    width="100%"
-    [options]="mapOptions">
+  [zoom]="zoom"
+  height="100vh"
+  width="100%"
+  [options]="mapOptions">
 
+  @for (marker of markers; track marker) {
     <map-marker
-        (mapClick)="onClick(marker)"
-        *ngFor="let marker of markers"
-        [icon]="getParkingMarkerIcon(marker)"
-        [options]="getParkingMarkerOptions(marker)"
-        [position]="marker.position"
-    >
-
+      (mapClick)="onClick(marker)"
+      [icon]="getParkingMarkerIcon(marker)"
+      [options]="getParkingMarkerOptions(marker)"
+      [position]="marker.position"
+      >
     </map-marker>
+  }
 
+  @if (currentLocationMarker) {
     <map-marker
-        (mapClick)="onClick(currentLocationMarker)"
-        *ngIf="currentLocationMarker"
-        [icon]="searchLocationIcon"
-        [position]="currentLocationMarker.position"
-    >
+      (mapClick)="onClick(currentLocationMarker)"
+      [icon]="searchLocationIcon"
+      [position]="currentLocationMarker.position"
+      >
     </map-marker>
+  }
 
+  @if (searchLocationMarker) {
     <map-marker
-        (mapClick)="onClick(searchLocationMarker)"
-        *ngIf="searchLocationMarker"
-        [position]="searchLocationMarker.position"
-    >
+      (mapClick)="onClick(searchLocationMarker)"
+      [position]="searchLocationMarker.position"
+      >
     </map-marker>
+  }
 
 </google-map>
