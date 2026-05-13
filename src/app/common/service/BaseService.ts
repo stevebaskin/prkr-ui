@@ -2,7 +2,6 @@ import { Model }        from '../domain/Model';
 import { Identifiable } from '../domain/Identifiable';
 import { ApiService }   from '../../module/core/service/ApiService';
 import { Observable }   from 'rxjs';
-import * as URI         from 'urijs';
 import { EventEmitter } from '@angular/core';
 
 export abstract class BaseService<Resource extends Model & Identifiable> {
@@ -49,9 +48,7 @@ export abstract class BaseService<Resource extends Model & Identifiable> {
     }
 
     protected getResourceUri(resource: Identifiable): string {
-        return URI(this.getBaseUri())
-            .segment(`${ resource.id }`) /* needs to be treating as a string */
-            .toString();
+        return `${ this.getBaseUri().replace(/\/$/, '') }/${ resource.id }`;
     }
 
     public getEventEmitter(): EventEmitter<Resource> {
