@@ -6,13 +6,13 @@ This module is the Angular frontend for Prkr. It provides a Sydney motorbike par
 
 ## Stack
 
-- Angular 13
+- Angular 21
 - TypeScript
 - SCSS
 - Bootstrap
 - `@ng-bootstrap/ng-bootstrap`
 - `@angular/google-maps`
-- `ngx-google-places-autocomplete`
+- local Google Places autocomplete directive
 
 ## Project Layout
 
@@ -25,7 +25,7 @@ This module is the Angular frontend for Prkr. It provides a Sydney motorbike par
 
 ## Local Development Prerequisites
 
-- Node.js and npm
+- Node.js 24 and npm 11
 - Installed dependencies via `npm install`
 - A browser with geolocation support
 - Internet access for Google Maps JavaScript and Places APIs

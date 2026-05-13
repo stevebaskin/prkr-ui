@@ -8,7 +8,7 @@ Use this file for agent-specific working notes. Use `README.md` for human-facing
 
 ## Stack And Shape
 
-- Angular 13
+- Angular 21
 - TypeScript
 - SCSS
 - Bootstrap and ng-bootstrap
@@ -38,6 +38,7 @@ The dev server runs on `http://localhost:4200` by default.
 ## Agent Notes
 
 - Preserve the existing Angular module and folder conventions.
+- Use Node 24 and npm 11 for local UI work.
 - Keep UI changes consistent with the current component/template/style split.
 - Prefer existing services and base classes before adding new shared abstractions.
 - Be careful with Google Maps, Places autocomplete, geolocation, reverse geocoding, and directions behavior; these are core user flows.
