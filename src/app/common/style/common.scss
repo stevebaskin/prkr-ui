@@ -1,8 +1,3 @@
-// Bootstrap imports
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/mixins";
-
 // theme
 // https://coolors.co/palette/8ecae6-219ebc-023047-ffb703-fb8500
 $ocean-blue: #219ebc; // primary
@@ -14,3 +9,11 @@ $golden-yellow: #ffb703; // accent
 $parking-green: #2E7D32; // success
 $sunset-orange: #fb8500; // warning
 $danger-red: #dc3545; // danger
+
+@mixin media-breakpoint-up($breakpoint) {
+    @if $breakpoint == sm {
+        @media (min-width: 576px) {
+            @content;
+        }
+    }
+}

@@ -1,4 +1,5 @@
-@import "src/app/common/style/common";
+@use "sass:color";
+@use "src/app/common/style/common" as *;
 
 form {
 
@@ -59,23 +60,23 @@ form {
     }
 
     &.btn-primary {
-        background: linear-gradient(135deg, $ocean-blue 0%, darken($ocean-blue, 5%) 100%);
+        background: linear-gradient(135deg, $ocean-blue 0%, color.adjust($ocean-blue, $lightness: -5%) 100%);
         color: white;
         box-shadow: 0 4px 12px rgba($ocean-blue, 0.3);
 
         &:hover {
-            background: linear-gradient(135deg, darken($ocean-blue, 5%) 0%, darken($ocean-blue, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($ocean-blue, $lightness: -5%) 0%, color.adjust($ocean-blue, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($ocean-blue, 0.4);
         }
     }
 
     &.btn-secondary {
-        background: linear-gradient(135deg, $sky-blue 0%, darken($sky-blue, 5%) 100%);
+        background: linear-gradient(135deg, $sky-blue 0%, color.adjust($sky-blue, $lightness: -5%) 100%);
         color: white;
         box-shadow: 0 4px 12px rgba($sky-blue, 0.3);
 
         &:hover {
-            background: linear-gradient(135deg, darken($sky-blue, 5%) 0%, darken($sky-blue, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($sky-blue, $lightness: -5%) 0%, color.adjust($sky-blue, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($sky-blue, 0.4);
         }
     }
@@ -86,18 +87,18 @@ form {
         color: $navy-blue;
 
         &:hover {
-            background: linear-gradient(135deg, darken($sky-blue, 5%) 0%, darken($sky-blue, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($sky-blue, $lightness: -5%) 0%, color.adjust($sky-blue, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($sky-blue, 0.4);
         }
     }
 
     &.btn-accent {
-        background: linear-gradient(135deg, $golden-yellow 0%, darken($golden-yellow, 5%) 100%);
+        background: linear-gradient(135deg, $golden-yellow 0%, color.adjust($golden-yellow, $lightness: -5%) 100%);
         color: white;
         box-shadow: 0 4px 12px rgba($golden-yellow, 0.3);
 
         &:hover {
-            background: linear-gradient(135deg, darken($golden-yellow, 5%) 0%, darken($golden-yellow, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($golden-yellow, $lightness: -5%) 0%, color.adjust($golden-yellow, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($golden-yellow, 0.4);
         }
     }
@@ -108,40 +109,40 @@ form {
         color: $navy-blue;
 
         &:hover {
-            background: linear-gradient(135deg, darken($golden-yellow, 5%) 0%, darken($golden-yellow, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($golden-yellow, $lightness: -5%) 0%, color.adjust($golden-yellow, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($golden-yellow, 0.4);
         }
     }
 
     &.btn-success {
-        background: linear-gradient(135deg, $parking-green 0%, darken($parking-green, 5%) 100%);
+        background: linear-gradient(135deg, $parking-green 0%, color.adjust($parking-green, $lightness: -5%) 100%);
         color: white;
         box-shadow: 0 4px 12px rgba($parking-green, 0.3);
 
         &:hover {
-            background: linear-gradient(135deg, darken($parking-green, 5%) 0%, darken($parking-green, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($parking-green, $lightness: -5%) 0%, color.adjust($parking-green, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($parking-green, 0.4);
         }
     }
 
     &.btn-warning {
-        background: linear-gradient(135deg, $sunset-orange 0%, darken($sunset-orange, 5%) 100%);
+        background: linear-gradient(135deg, $sunset-orange 0%, color.adjust($sunset-orange, $lightness: -5%) 100%);
         color: white;
         box-shadow: 0 4px 12px rgba($sunset-orange, 0.3);
 
         &:hover {
-            background: linear-gradient(135deg, darken($sunset-orange, 5%) 0%, darken($sunset-orange, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($sunset-orange, $lightness: -5%) 0%, color.adjust($sunset-orange, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($sunset-orange, 0.4);
         }
     }
 
     &.btn-danger {
-        background: linear-gradient(135deg, $danger-red 0%, darken($danger-red, 5%) 100%);
+        background: linear-gradient(135deg, $danger-red 0%, color.adjust($danger-red, $lightness: -5%) 100%);
         color: white;
         box-shadow: 0 4px 12px rgba($danger-red, 0.3);
 
         &:hover {
-            background: linear-gradient(135deg, darken($danger-red, 5%) 0%, darken($danger-red, 10%) 100%);
+            background: linear-gradient(135deg, color.adjust($danger-red, $lightness: -5%) 0%, color.adjust($danger-red, $lightness: -10%) 100%);
             box-shadow: 0 6px 20px rgba($danger-red, 0.4);
         }
     }

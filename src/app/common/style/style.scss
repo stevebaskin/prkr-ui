@@ -1,7 +1,7 @@
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@use 'bootstrap/scss/bootstrap';
+@use "src/app/common/style/common" as *;
 @import "bootstrap-icons/font/bootstrap-icons.css";
-@import "src/app/common/style/common";
 
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
